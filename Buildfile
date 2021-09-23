@@ -1,4 +1,4 @@
-STORAGE_DIR="/home/p01ar/sakua"
+STORAGE_DIR="/home/p01ar/sakura"
 
 target_sakura(){
    require_root
@@ -7,6 +7,7 @@ target_sakura(){
    info "Creating storage"
    exec mkdir -p $STORAGE_DIR
    info "Preparing storage"
+   exec rm -f $STORAGE_DIR/Buildfile
    exec cp build/Buildfile $STORAGE_DIR/Buildfile
    info "Starting build docker image"
    exec docker build . -t polarmod.build

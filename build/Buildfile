@@ -8,8 +8,9 @@ export buildtype="userdebug"
 target_sync-initial(){
    exec git config --global user.email "p01ar@p01ar.net"
    exec git config --global user.name "Andrewerr"
+   exec "mkdir -p /root/sakura/.repo/local_manifests/"
+   exec "cp /root/manifests/* .repo/local_manifests/"
    exec "/root/bin/repo init --depth=1 -u git://github.com/ProjectSakura/android.git -b 11 && repo sync --current-branch --force-sync --no-clone-bundle --no-tags --optimized-fetch --prune -j 6" 
-   exec "mv ~/manifests/* .repo/local_manifests"
    success "Sync successful"
    info "Copying local vendor Polar"
    exec "cp -r /root/polar vendor/polar"
@@ -54,6 +55,7 @@ target_patch(){
   change_dir vendor/lineage
   exec patch config/common.mk ~/patches/common.mk.patch
   success "Succesfully patched PRODUCT_PACKAGES"
+  leave_dir
 }
 
 target_arm(){
