@@ -6,7 +6,7 @@
   <project name="LineageOS/android_hardware_sony_macaddrsetup" path="hardware/sony/macaddrsetup" revision="lineage-18.1" remote="github" />
   <project name="LineageOS/android_hardware_broadcom_fm" path="hardware/broadcom/fm" revision="lineage-18.1" remote="github" />
   <project name="LineageOS/android_packages_apps_Email" path="packages/apps/Email" revision="lineage-17.1" remote="github" />
-  <project name="LineageOS/android_packages_apps_UnifiedEmail" path="packags/apps/UnifiedEmail" revision="lineage-17.1" remote="github" />
+  <project name="LineageOS/android_packages_apps_UnifiedEmail" path="packages/apps/UnifiedEmail" revision="lineage-17.1" remote="github" />
   <remote  name="gitlab_sony" fetch="https://gitlab.com/sony_scorpion/" />
   <project name="android_device_sony_msm8974-common" path="device/sony/msm8974-common" revision="lineage-18.1" remote="gitlab_sony" />
   <project name="android_device_sony_shinano-common" path="device/sony/shinano-common" revision="lineage-18.0" remote="gitlab_sony" />

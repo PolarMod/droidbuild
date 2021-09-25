@@ -58,6 +58,18 @@ target_patch(){
   leave_dir
 }
 
+target_clean-patch(){
+  info "Cleaning up patched repos"
+  exec "rm -rf vendor/lineage"
+  success "Done cleaning up"
+}
+
+target_clean-soft(){
+  info "Cleaning local changes"
+  target_clean-patch
+}
+
+
 target_arm(){
   info "Patching libraries for arm32"
   info "external/faceunlock"
@@ -221,8 +233,8 @@ target_z3tc-signed(){
   target_name="PolarMod-Sakura-${signature}.${keys}"
   print_info
   info "Updating sigining keys..."
-  exec rm -rf ~/.android-certs
-  exec cp -r .android-certs ~/
+  #exec rm -rf ~/.android-certs
+  exec cp -r /root/.android-certs .android-certs
   success "Updated signing keys"
   info "Assumming everything is patched for bootloader being locked"
   info "Use 'patch' target if you would like to perform patching first" #TODO: patch target
@@ -267,6 +279,7 @@ target_hotdogg(){
 }
 
 target_all(){
+  target_clean-patch
   target_sync-initial
   target_patch
   target_z3tc
