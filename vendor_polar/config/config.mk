@@ -1,4 +1,3 @@
-#$(error "${PRODUCT_PACKAGES} <- before)
 # PolarMod added packages
 PRODUCT_PACKAGES += \
     Email \
@@ -7,5 +6,9 @@ PRODUCT_PACKAGES += \
     Nextcloud \
     UnifiedNlp \
     MozillaNlpBackend \
-    NominatimNlpBackend
+    NominatimNlpBackend \
+    Recorder \
+    Updater
+
+TARGET_USER_BLUR := true
 

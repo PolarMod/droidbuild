@@ -34,5 +34,3 @@ WORKDIR /root/sakura
 COPY build/Buildfile Buildfile
 COPY external external
 ENTRYPOINT build all
-#RUN /root/bin/repo sync -j8
-#RUN ./build/envsetup.sh && lunch hotdogg
