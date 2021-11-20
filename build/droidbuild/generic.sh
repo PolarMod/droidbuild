@@ -33,16 +33,16 @@ target_patch(){
   require_command git
   info "Patching packages"
   exec rm -rf system/update_engine
-  exec rm -rf frameworks/base
+#  exec rm -rf frameworks/base
   exec rm -rf bootable/recovery
   info "Updating packages from PolarMod"
   change_dir /tmp
   exec git clone "$GITHUB/system_update_engine"
-  exec git clone "$GITHUB/frameworks_base"
+#  exec git clone "$GITHUB/frameworks_base"
   exec git clone "$GITHUB/android_bootable_recovery"
   info "Replacing packages with patched ones"
   exec mv system_update_engine $BASEDIR/system/update_engine
-  exec mv frameworks_base $BASEDIR/frameworks/base
+#  exec mv frameworks_base $BASEDIR/frameworks/base
   exec mv android_bootable_recovery $BASEDIR/bootable/recovery
   success "Patched basic repositories"
   leave_dir

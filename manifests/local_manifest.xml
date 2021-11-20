@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <manifest>
+  <remove-project name="frameworks_base"/>
+  <project name="PolarMod/frameworks_base" path="frameworks/base" remote="github" revision="11" />
   <project name="LineageOS/android_device_sony_common" path="device/sony/common" revision="lineage-18.1" remote="github" />
   <project name="LineageOS/android_hardware_sony_thermanager" path="hardware/sony/thermanager" revision="lineage-18.1" remote="github" />
   <project name="LineageOS/android_hardware_sony_timekeep" path="hardware/sony/timekeep" revision="lineage-18.1" remote="github" />
   <project name="LineageOS/android_hardware_sony_macaddrsetup" path="hardware/sony/macaddrsetup" revision="lineage-18.1" remote="github" />
   <project name="LineageOS/android_hardware_broadcom_fm" path="hardware/broadcom/fm" revision="lineage-18.1" remote="github" />
   <project name="LineageOS/android_packages_apps_Email" path="packages/apps/Email" revision="lineage-17.1" remote="github" />
-  <project name="LineageOS/android_packages_apps_Recorder" path="packages/apps/Recorder" revision="lineage-18.1" remote="github" />
   <project name="LineageOS/android_packages_apps_UnifiedEmail" path="packages/apps/UnifiedEmail" revision="lineage-17.1" remote="github" />
   <remote  name="gitlab_sony" fetch="https://gitlab.com/sony_scorpion/" />
   <project name="android_device_sony_msm8974-common" path="device/sony/msm8974-common" revision="lineage-18.1" remote="gitlab_sony" />
@@ -21,9 +22,16 @@
   <project name="PolarMod/proprietary_vendor_oneplus" path="vendor/oneplus" remote="github" revision="11.0" />
   <project name="PolarMod/android_hardware_oneplus" path="hardware/oneplus" remote="github" revision="11.0" />
   <project name="Andrewerr/android_vendor_oneplus_apps" path="vendor/oneplus/apps" remote="gitlab" revision="11.0" />
-  <project name="LineageOS/android_kernel_samsung_gta4xl" path="kernel/samsung/gta4xl" />
-  <project name="LineageOS/android_device_samsung_gta4xlwifi" path="device/samsung/gta4xlwifi" />
-  <project name="LineageOS/android_device_samsung_gta4xl-common" path="device/samsung/gta4xl-common" />
+  <project name="gta4xl/android_vendor_samsung_gta4xlwifi" path="vendor/samsung/gta4xlwifi" revision="lineage-18.1"/>
+  <project name="gta4xl/android_vendor_samsung_gta4xl-common" path="vendor/samsung/gta4xl-common" revision="lineage-18.1" />
+  <project name="LineageOS/android_kernel_samsung_gta4xl" path="kernel/samsung/gta4xl" revision="lineage-18.1" />
+  <project name="LineageOS/android_device_samsung_slsi_sepolicy" path="device/samsung_slsi/sepolicy" revision="lineage-18.1" />
+  <project name="LineageOS/android_device_samsung_gta4xlwifi" path="device/samsung/gta4xlwifi" revision="lineage-18.1" />
+  <project name="LineageOS/android_device_samsung_gta4xl-common" path="device/samsung/gta4xl-common" revision="lineage-18.1" />
+  <!--<project name="LineageOS/android_hardware_samsung" path="hardware/samsung" revision="lineage-18.1" />-->
+  <project name="LineageOS/android_hardware_samsung_slsi_libbt" path="hardware/samsung_slsi/libbt" revision="lineage-18.1" />
+  <project name="LineageOS/android_hardware_samsung_slsi_scsc_wifibt_wpa_supplicant_lib" path="hardware/samsung_slsi/scsc/wifibt_wpa_supplicant_lib" revision="lineage-18.1" />
+  <project name="LineageOS/android_hardware_samsung_slsi_scsc_wifibt_wifi_hal" path="hardware/samsung_slsi/scsc/wifibt_wifi_hal" revision="lineage-18.1" />
 </manifest>
 
 
