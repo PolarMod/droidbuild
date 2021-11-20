@@ -15,7 +15,7 @@ COPY external/faceunlock32 faceunlock32
 COPY overlays overlays
 COPY patches patches
 COPY external external
-COPY certbundle.zip.sc certbundle.zip.sc
+COPY scripts scripts
 RUN mkdir -p bin
 RUN mkdir -p sakura
 RUN mkdir -p sakura/out_dir

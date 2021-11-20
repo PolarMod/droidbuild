@@ -1,5 +1,4 @@
-STORAGE_DIR="/home/p01ar/sakura-release"
-PREV_BUILD_DIR="/home/p01ar/Documents/Polar\ Group/PolarMod-out"
+include_if_exists "config.sh"
 
 target_sakura(){
    require_root
@@ -10,6 +9,10 @@ target_sakura(){
    exec mkdir -p "$PREV_BUILD_DIR"
    exec mkdir -p "$PREV_BUILD_DIR/previous"
    info "Preparing storage"
+   if [[ ! -f "$PREV_BUILD_DIR/certbundle.zip.sc" ]]; then
+        target_generate-keys
+   fi
+   exec "cp $PREV_BUILD_DIR/certbundle.zip.sc $STORAGE_DIR/"
    exec rm -f $STORAGE_DIR/Buildfile
    exec rm -rf $STORAGE_DIR/droidbuild
    exec cp build/Buildfile $STORAGE_DIR/Buildfile
@@ -30,7 +33,8 @@ target_sakura(){
 
 target_generate-keys(){
     target_build-docker
-    exec "docker run -v $STORAGE_DIR:/root/sakura --entrypoint '/bin/bash /usr/bin/build generate-keys' -it droidbuild"
+    exec "docker run -v $STORAGE_DIR:/root/sakura --entrypoint '/root/scipts/container-generate-keys.sh' -it droidbuild"
+    exec "cp $STORAGE_DIR/certbundle.zip.sc $PREV_BUILD_DIR/certbundle.zip.sc"
 }
 
 target_build-docker(){
