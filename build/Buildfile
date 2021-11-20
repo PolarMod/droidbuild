@@ -121,13 +121,15 @@ target_hotdogg-signed(){
   info "Building full OTA"
   exec "./build/tools/releasetools/ota_from_target_files --skip_compatibility_check -v -k ~/.android-certs/releasekey --block ${out_dir}/${target_name}-signed-target_files.zip ${out_dir}/${target_name}-OTA-signed.zip"
   success "Succesfully built full OTA!"
-#  info "Building incremental OTA"
-#  exec "./build/tools/releasetools/ota_from_target_files --skip_compatibility_check -v -k ~/.android-certs/releasekey --block -i ${previous_target_files} ${out_dir}/${target_name}-signed-target_files.zip ${out_dir}/${target_name}-INCREMENTAL-OTA-signed.zip"
+  if [[ -f $previous_target_files ]]; then
+    info "Building incremental OTA"
+    exec "./build/tools/releasetools/ota_from_target_files --skip_compatibility_check -v -k ~/.android-certs/releasekey --block -i ${previous_target_files} ${out_dir}/${target_name}-signed-target_files.zip ${out_dir}/${target_name}-INCREMENTAL-OTA-signed.zip"
+  fi
 }
 
 
 target_gta4xlwifi-signed(){
-  export buildtype="user"
+  export buildtype="eng"
   export devname="gta4xlwifi"
   target_any-signed
 }
@@ -161,7 +163,7 @@ target_emulator(){
   info "Building emulator package"
   exec "source build/envsetup.sh"
   exec "lunch lineage_x86_64-eng"
-  exec "mka sdkaddon -j6"
+  exec "mka sdk_addon -j8"
   success "Built emulator package"
 }
 
