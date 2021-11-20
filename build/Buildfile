@@ -9,10 +9,11 @@ export buildtype="userdebug"
 
 include "droidbuild/hosts.sh"
 include "droidbuild/generic.sh"
+include_if_exists "/root/config.sh"
 
 target_sync-initial(){
-   exec git config --global user.email "p01ar@p01ar.net"
-   exec git config --global user.name "Andrewerr"
+   exec git config --global user.email "$GIT_EMAIL"
+   exec git config --global user.name "$GIT_USERNAME"
    exec "mkdir -p /root/sakura/.repo/local_manifests/"
    exec "cp /root/manifests/* .repo/local_manifests/"
    exec "/root/bin/repo init --depth=1 -u git://github.com/ProjectSakura/android.git -b 11 && repo sync --current-branch --force-sync --no-clone-bundle --no-tags --optimized-fetch --prune -j 6" 
@@ -22,6 +23,45 @@ target_sync-initial(){
    success "Succesfully synchronized local vendors"
 }
 
+target_generate-keys(){
+    info "This target should be called only ONCE at FIRST build"
+    require_command zip
+    require_command unzip
+    require_command scrypt
+    target_sync-initial
+    mkdir -p android-certs
+    exec rm -rf certbundle.zip certbundle.zip.sc
+    info "Keys subject: ${subject}"
+    mkdir android-certs
+    for x in releasekey platform shared media networkstack testkey; do \
+        ./development/tools/make_key android-certs/$x "$CERT_SUBJECT"; \
+    done
+    info "Generating encrypted keys bundle"
+    exec zip -r certbundle.zip android-certs
+    exec "scrypt enc certbundle.zip > certbundle.zip.sc"
+    success "Generated encrypted keys bundle"
+    info "Cleaning up unencrypted keys securely"
+    exec srm -r android-certs certbundle.zip
+    success "Done."
+}
+
+target_open-keys(){
+    require_command unzip
+    require_command srm
+    change_dir /tmp
+    info "Opening encrypted key bundle"
+    exec "scrypt dec certbundle.zip.sc > certbundle.zip"
+    exec unzip certbundle.zip
+    exec cp -r android-certs /root/.android-certs
+    exec cp -r android-certs $BASEDIR/.android-certs
+    srm certbundle.zip
+    leave_dir
+}
+
+target_close-keys(){
+    require_command srm
+    srm -r /root/.android-certs $BASEDIR/.android-certs
+}
 
 target_clean-patch(){
   info "Cleaning up patched repos"
@@ -105,7 +145,6 @@ target_hotdogg-signed(){
   exec cp -r ~/.android-certs .android-certs
   success "Updated signing keys"
   info "Assumming everything is patched for bootloader being locked"
-  info "Use 'patch' target if you would like to perform patching first" #TODO: patch target
   info "Starting build"
   exec ". build/envsetup.sh"
   exec "lunch lineage_hotdogg-${buildtype}"
@@ -171,11 +210,14 @@ target_all(){
   target_clean-patch
   target_sync-initial
   target_droidbuild
+  target_open_keys
   target_cat1
   target_patch
+  target_open-keys
   target_z3tc
   target_hotdogg
   target_emulator
+  target_close-keys
 }
 
 include "droidbuild/aux.sh"
