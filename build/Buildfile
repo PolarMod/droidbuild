@@ -1,232 +1,52 @@
-INFILE="/root/external/PolarHosts/hosts.base"
-OUTFILE_REAL="system/core/rootdir/etc/hosts"
 BUILD_OUT_DIR="out_dir/"
-DROIDBUILD_SEARCH_DIRS=("external/")
 DROIDDIR=$(pwd)
 
-export PATH="$PATH:/root/bin/:/root/sakura/build/make/tools/bin/"
-export buildtype="userdebug"
+export PATH="$PATH:/root/bin/:$BASEDIR/build/make/tools/bin/"
 
-include "droidbuild/hosts.sh"
+include "droidbuild/keys.sh"
 include "droidbuild/generic.sh"
 include_if_exists "/root/config.sh"
 
 target_sync-initial(){
    exec git config --global user.email "$GIT_EMAIL"
    exec git config --global user.name "$GIT_USERNAME"
-   exec "mkdir -p /root/sakura/.repo/local_manifests/"
+   exec "mkdir -p $BASEDIR/.repo/local_manifests/"
    exec "cp /root/manifests/* .repo/local_manifests/"
-   exec "/root/bin/repo init --depth=1 -u git://github.com/ProjectSakura/android.git -b 11 && repo sync --current-branch --force-sync --no-clone-bundle --no-tags --optimized-fetch --prune -j 6" 
+   exec "/root/bin/repo init --depth=1 -u $BASE_REPO -b $BASE_REPO_BRANCH && repo sync --current-branch --force-sync --no-clone-bundle --no-tags --optimized-fetch --prune -j $N_PROC" 
    success "Sync successful"
-   info "Copying local vendor Polar"
-   exec "cp -r /root/polar vendor/polar"
-   success "Succesfully synchronized local vendors"
-}
-
-target_generate-keys(){
-    info "This target should be called only ONCE at FIRST build"
-    require_command zip
-    require_command unzip
-    require_command scrypt
-    require_command openssl
-    #target_sync-initial
-    mkdir -p android-certs
-    exec rm -rf certbundle.zip certbundle.zip.sc
-    info "Keys subject: $CERT_SUBJECT"
-    for x in releasekey platform shared media networkstack testkey; do \
-    ./development/tools/make_key android-certs/$x "$CERT_SUBJECT"; \
-    done
-    for x in releasekey platform shared media networkstack testkey; do
-        exec "openssl rsa -inform DER -in android-certs/$x.pk8 -out android-certs/$x.key"
-    done
-    info "Generating encrypted keys bundle"
-    exec zip -r certbundle.zip android-certs
-    exec "scrypt enc certbundle.zip > certbundle.zip.sc"
-    success "Generated encrypted keys bundle"
-    info "Cleaning up unencrypted keys securely"
-    exec srm -r android-certs certbundle.zip
-    success "Done."
-}
-
-target_open-keys(){
-    require_command unzip
-    require_command srm
-    change_dir /tmp
-    info "Opening encrypted key bundle"
-    exec "scrypt dec $BASEDIR/certbundle.zip.sc > certbundle.zip"
-    exec unzip certbundle.zip
-    #exec srm -rf /root/.android-certs $BASEDIR/.android-certs
-    exec cp -r android-certs /root/.android-certs
-    exec cp -r android-certs $BASEDIR/.android-certs
-    srm certbundle.zip
-    leave_dir
-}
-
-target_close-keys(){
-    require_command srm
-    srm -r /root/.android-certs $BASEDIR/.android-certs
-}
-
-target_clean-patch(){
-  info "Cleaning up patched repos"
-  exec "rm -rf vendor/lineage"
-  exec "rm -rf build/core"
-  success "Done cleaning up"
-}
-
-target_clean-soft(){
-  info "Cleaning local changes"
-  target_clean-patch
-}
-
-
-target_arm(){
-  info "Patching libraries for arm32"
-  info "external/faceunlock"
-  exec rm -rf external/faceunlock
-  exec cp -r /root/faceunlock32 external/faceunlock
-  success "external/faceunlock patched"
-}
-
-target_aarch(){
-  require_command git
-  info "Patching libraries for aarch64"
-  info "external/faceunlock"
-  exec rm -rf external/faceunlock
-  change_dir external
-  exec git clone https://gitlab.com/LordShen/external_faceunlock
-  exec mv external_faceunlock faceunlock
-  success "external/faceunlock"
-  leave_dir
-  success "Succesfully patched libraries for aarch64"
-}
-
-target_z3tc(){
-  export devname="z3tc"
-  export buildtype="userdebug"
-  export keys="test-keys"
-  target_env
-  target_arm
-  print_info
-  target_clean
-  target_any-unsigned
-}
-
-
-target_z3tc-local-eng(){
-  export devname="z3tc"
-  target_clean
-  target_cat1
-  exec ". build/envsetup.sh && lunch lineage_z3tc-eng && mka bacon -j6"
-}
-
-target_hotdogg-local(){
-  export devname="hotdogg"
-  target_clean
-  target_cat1
-  exec ". build/envsetup.sh && lunch lineage_hotdogg-userdebug && mka bacon -j6"
-}
-
-target_hotdogg-syncd(){
-  export devname="hotdogg"
-  target_env
-  export keys="test-keys"
-  exec "repo sync"
-  target_hotdogg-local
-}
-
-target_hotdogg-signed(){
-  export buildtype="user"
-  export devname="hotdogg"
-  target_env
-  export keys="release-keys"
-  previous_target_files=$(get_latest_file "*hotdogg*signed-target_files*" "${out_dir}")
-  target_name="PolarMod-Sakura-${signature}.${keys}"
-  print_info 
-  info "Updating sigining keys..."
-  #exec rm -rf ~/.android-certs
-  exec cp -r /root/.android-certs .android-certs
-  success "Updated signing keys"
-  info "Assumming everything is patched for bootloader being locked"
-  info "Starting build"
-  exec ". build/envsetup.sh"
-  exec "lunch lineage_hotdogg-${buildtype}"
-  export TARGET_USER_BLUR=true
-  export EXTRA_FOD_ANIMATIONS=true
-  exec "mka target-files-package dist otatools -j8"
-  success "Built target files package succesfully"
-  info "Preparing enviroment for signing"
-  target_signing
-  info "Signing files"
-  exec "./build/tools/releasetools/sign_target_files_apks -o -d ~/.android-certs $OUT/obj/PACKAGING/target_files_intermediates/*-target_files-*.zip ${out_dir}/${target_name}-signed-target_files.zip"
-  success "Signed files succesfully"
-  info "Building full OTA"
-  exec "./build/tools/releasetools/ota_from_target_files --skip_compatibility_check -v -k ~/.android-certs/releasekey --block ${out_dir}/${target_name}-signed-target_files.zip ${out_dir}/${target_name}-OTA-signed.zip"
-  success "Succesfully built full OTA!"
-  info "Generating pmkd.bin"
-  exec python2 ./external/avb/avbtool extract_public_key --key .android-certs/releasekey.key --output out_dir/pkmd-${devname}.bin
-  success "Generated pmkd.bin"
-  if [[ -f $previous_target_files ]]; then
-    info "Building incremental OTA"
-    exec "./build/tools/releasetools/ota_from_target_files --skip_compatibility_check -v -k ~/.android-certs/releasekey --block -i ${previous_target_files} ${out_dir}/${target_name}-signed-target_files.zip ${out_dir}/${target_name}-INCREMENTAL-OTA-signed.zip"
-  fi
-}
-
-
-target_gta4xlwifi-signed(){
-  export buildtype="eng"
-  export devname="gta4xlwifi"
-  target_any-signed
-}
-
-target_hotdogg-local-user-signed(){
-  export buildtype="user"
-  target_hotdogg-signed
-}
-
-target_clean(){
-  exec rm -rf $OUTFILE_REAL
 }
 
 target_env(){
   export out_dir=$BUILD_OUT_DIR
   require_directory $out_dir
-  export keys="test-keys"
   datetime=`date '+%Y%m%d_%H%M%S'`
   export signature="${devname}-${datetime}-${buildtype}"
   export BUILD_DISPLAY_ID="${devname}-${datetime}-${buildtype}-${BUILD_ID}"
 }
 
-
-target_hotdogg(){
-  target_aarch
-  target_patch-bootloader
-  target_hotdogg-local-user-signed
-}
-
-target_emulator(){
-  info "Building emulator package"
-  exec "source build/envsetup.sh"
-  exec "lunch lineage_x86_64-eng"
-  exec "mka sdk_addon -j8"
-  success "Built emulator package"
-}
-
-target_all(){
-  target_clean-patch
-  target_sync-initial
-  target_droidbuild
-  target_cat1
-  target_patch
-  target_open-keys
-  target_hotdogg
-  #target_emulator
-  target_close-keys
+target_device(){
+  target_env  
+  if $TARGET_NEEDS_RESYNC; then
+    info "Target requires to resync sources"
+    info "Updating local manifests"
+    exec "rm -rf $BASEDIR/.repo/local_manifests/*.xml"
+    for file in ${TARGET_LOCAL_MANIFESTS}; do
+      exec "cp ${file} $BASEDIR/.repo/local_manifests/"
+    done
+  fi
+  # The configuration is done by calling droidbuild
+  # Now we need to re-include files and call droidbuild
+  for LOCAL_PATH in ${DROIDBUILD_MODULES[@]}; do
+    include $LOCAL_PATH/Droidbuild.sh
+    droidbuild  
+  done
 }
 
 include "droidbuild/aux.sh"
 
-target_droidbuild(){
+DROIDBUILD_MODULES=()
+
+droidbuild(){
     info "Collecting Droidbuild modules"
     # Include droid build files
     glob_files "**/Droidbuild.sh" $dir files
@@ -234,7 +54,10 @@ target_droidbuild(){
         TARGET_NAME="$1"
         LOCAL_PATH="$(pwd)/$(dirname $file)"
         info "Including $file"
+        DROIDBUILD_MODULES+=$LOCAL_PATH
         include $file
-        droidbuild_module
     done
 }
+
+include droidbuild/build_vars.sh
+droidbuild
