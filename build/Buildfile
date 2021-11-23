@@ -28,13 +28,16 @@ target_generate-keys(){
     require_command zip
     require_command unzip
     require_command scrypt
-    target_sync-initial
+    require_command openssl
+    #target_sync-initial
     mkdir -p android-certs
     exec rm -rf certbundle.zip certbundle.zip.sc
-    info "Keys subject: ${subject}"
-    mkdir android-certs
+    info "Keys subject: $CERT_SUBJECT"
     for x in releasekey platform shared media networkstack testkey; do \
-        ./development/tools/make_key android-certs/$x "$CERT_SUBJECT"; \
+    ./development/tools/make_key android-certs/$x "$CERT_SUBJECT"; \
+    done
+    for x in releasekey platform shared media networkstack testkey; do
+        exec "openssl rsa -inform DER -in android-certs/$x.pk8 -out android-certs/$x.key"
     done
     info "Generating encrypted keys bundle"
     exec zip -r certbundle.zip android-certs
@@ -50,8 +53,9 @@ target_open-keys(){
     require_command srm
     change_dir /tmp
     info "Opening encrypted key bundle"
-    exec "scrypt dec certbundle.zip.sc > certbundle.zip"
+    exec "scrypt dec $BASEDIR/certbundle.zip.sc > certbundle.zip"
     exec unzip certbundle.zip
+    #exec srm -rf /root/.android-certs $BASEDIR/.android-certs
     exec cp -r android-certs /root/.android-certs
     exec cp -r android-certs $BASEDIR/.android-certs
     srm certbundle.zip
@@ -80,7 +84,7 @@ target_arm(){
   info "Patching libraries for arm32"
   info "external/faceunlock"
   exec rm -rf external/faceunlock
-  exec cp -r ~/faceunlock32 external/faceunlock
+  exec cp -r /root/faceunlock32 external/faceunlock
   success "external/faceunlock patched"
 }
 
@@ -105,7 +109,6 @@ target_z3tc(){
   target_arm
   print_info
   target_clean
-  target_cat1 
   target_any-unsigned
 }
 
@@ -142,7 +145,7 @@ target_hotdogg-signed(){
   print_info 
   info "Updating sigining keys..."
   #exec rm -rf ~/.android-certs
-  exec cp -r ~/.android-certs .android-certs
+  exec cp -r /root/.android-certs .android-certs
   success "Updated signing keys"
   info "Assumming everything is patched for bootloader being locked"
   info "Starting build"
@@ -160,6 +163,9 @@ target_hotdogg-signed(){
   info "Building full OTA"
   exec "./build/tools/releasetools/ota_from_target_files --skip_compatibility_check -v -k ~/.android-certs/releasekey --block ${out_dir}/${target_name}-signed-target_files.zip ${out_dir}/${target_name}-OTA-signed.zip"
   success "Succesfully built full OTA!"
+  info "Generating pmkd.bin"
+  exec python2 ./external/avb/avbtool extract_public_key --key .android-certs/releasekey.key --output out_dir/pkmd-${devname}.bin
+  success "Generated pmkd.bin"
   if [[ -f $previous_target_files ]]; then
     info "Building incremental OTA"
     exec "./build/tools/releasetools/ota_from_target_files --skip_compatibility_check -v -k ~/.android-certs/releasekey --block -i ${previous_target_files} ${out_dir}/${target_name}-signed-target_files.zip ${out_dir}/${target_name}-INCREMENTAL-OTA-signed.zip"
@@ -210,20 +216,18 @@ target_all(){
   target_clean-patch
   target_sync-initial
   target_droidbuild
-  target_open_keys
   target_cat1
   target_patch
   target_open-keys
-  target_z3tc
   target_hotdogg
-  target_emulator
+  #target_emulator
   target_close-keys
 }
 
 include "droidbuild/aux.sh"
 
 target_droidbuild(){
-    info "Collecting and running Droidbuild modules"
+    info "Collecting Droidbuild modules"
     # Include droid build files
     glob_files "**/Droidbuild.sh" $dir files
     for file in ${files[@]}; do

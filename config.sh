@@ -1,10 +1,10 @@
 # Your Git email for repo configuration
-GIT_EMAIL="git@github.com"
+export GIT_EMAIL="git@github.com"
 # Your Git username for repo configuration
-GIT_USERNAME="git"
+export GIT_USERNAME="git"
 # Certificate subject for openssl key genration
-CERT_SUBJECT="/C=US/ST=California/L=Mountain View/O=Android/OU=Android/CN=Android/emailAddress=android@android.com"
+export CERT_SUBJECT="/C=UA/ST=L'viv/L=L'vivs'ka oblast'/O=Polar Group/OU=Android development/CN=PolarMod/emailAddress=p01ar@p01ar.net"
 # Directory to build ROM
-STORAGE_DIR="$HOME/sakura-release"
+export STORAGE_DIR="/home/p01ar/sakura-release"
 # Directory to store builds,keys,etc.
-PREV_BUILD_DIR="$HOME/PolarMod-out"
+export PREV_BUILD_DIR="/home/p01ar/sakura-out"
