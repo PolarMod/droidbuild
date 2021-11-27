@@ -8,3 +8,8 @@ CERT_SUBJECT="/C=UA/ST=L'viv/L=L'vivs'ka oblast'/O=Polar Group/OU=Android develo
 STORAGE_DIR="$HOME/droid"
 # Directory to store builds,keys,etc.
 PREV_BUILD_DIR="$HOME/droid-out"
+# Our ROM base repo(ProjectSakura, but may be different)
+BASE_REPO="git://github.com/ProjectSakura/android.git"
+# Base repo barnch
+BASE_REPO_BRANCH="11"
+
