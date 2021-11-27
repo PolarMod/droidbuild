@@ -50,6 +50,11 @@ target_build-device(){
     done
     target_sync-initial
   fi
+  # Device configuration is fully ready
+  # As device may use droidbuild modules other
+  # then its' specification we should update all modules
+  # once more
+  droidbuild
   # Now remove directories that must not exist when building
   # currrent target
   info "Removing directories that must not exist for current target"
@@ -60,7 +65,8 @@ target_build-device(){
   # Now we need to re-include files and call droidbuild
   for LOCAL_PATH in ${DROIDBUILD_MODULES[@]}; do
     include $LOCAL_PATH/Droidbuild.sh
-    droidbuild
+    # Call droidbuild modules  
+    droidbuild_module
   done
   # Set threads count for AOSP buildsystem
   if ndef CONFIG_NPROC; then
@@ -85,8 +91,10 @@ target_build-device(){
 target_devices(){
   # Specifies device list
   # Synchronize first
-  target_sync-initial
+  target_sync-initial <-- # droidbuild_devvice_* repos MUST BE synchornized here
   # Build each device
+  # FIXME: Separate device list
+  droidbuild  
   target_z3tc
 }
 include "droidbuild/aux.sh"
@@ -95,6 +103,8 @@ DROIDBUILD_MODULES=()
 
 droidbuild(){
     info "Collecting Droidbuild modules"
+    # Reset module list
+    DROIDBUILD_MODULES  
     # Include droid build files
     glob_files "**/Droidbuild.sh" $dir files
     for file in ${files[@]}; do
@@ -107,4 +117,4 @@ droidbuild(){
 }
 
 include droidbuild/build_vars.sh
-droidbuild
+
