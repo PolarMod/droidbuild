@@ -24,11 +24,12 @@ target_generate-keys(){
 target_storage(){
     exec mkdir -p $STORAGE_DIR
     exec mkdir -p $STORAGE_DIR/out_dir
-    exec cp -r droidbuild $STORAGE_DIR/
-    exec cp Buildfile $STORAGE_DIR/
+    exec cp -r build/droidbuild $STORAGE_DIR/
+    exec cp build/Buildfile $STORAGE_DIR/
     exec mkdir -p $STORAGE_DIR/.repo
     exec mkdir -p $STORAGE_DIR/.repo/local_manifests
-    exec cp manifests/*.xml $STORAGE_DIR/
+    exec cp manifests/*.xml $STORAGE_DIR/.repo/local_manifests
+    exec cp config.sh $STORAGE_DIR/
     if [[ -f $PREV_BUILD_DIR/*.zip ]]; then
        exec "cp $PREV_BUILD_DIR/*.zip $STORAGE_DIR/out_dir/" # For incremental updates support
     fi
@@ -48,5 +49,5 @@ target_build-docker(){
 
 target_shell(){
    target_build-docker
-   exec docker run -v $STORAGE_DIR:/root/sakura --entrypoint /bin/bash -it droidbuild
+   exec docker run -v $STORAGE_DIR:/root/droid --entrypoint /bin/bash -it droidbuild
 }

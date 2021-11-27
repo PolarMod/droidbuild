@@ -88,10 +88,10 @@ target_build-device(){
   success "Cleaned-up after build"
 }
 
-target_devices(){
+target_droid(){
   # Specifies device list
   # Synchronize first
-  target_sync-initial <-- # droidbuild_devvice_* repos MUST BE synchornized here
+  target_sync-initial # <-- droidbuild_devvice_* repos MUST BE synchornized here
   # Build each device
   # FIXME: Separate device list
   droidbuild  
@@ -104,7 +104,7 @@ DROIDBUILD_MODULES=()
 droidbuild(){
     info "Collecting Droidbuild modules"
     # Reset module list
-    DROIDBUILD_MODULES  
+    DROIDBUILD_MODULES=()  
     # Include droid build files
     glob_files "**/Droidbuild.sh" $dir files
     for file in ${files[@]}; do
