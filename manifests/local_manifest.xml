@@ -8,6 +8,8 @@
   <project name="PolarMod/android_external_PolatHosts" path="external/PolarHosts" remote="github" revision="opressor" />
   <project name="PolarMod/android_bootable_recovery" path="bootable/recovery" remote="github" revision="lineage-18.1" />
   <project name="PolarMod/system_update_engine" path="system/update_engine" remote="github" revision="11" /> 
+  <!-- Devices (TODO: move to separate manifest) -->  
+  <project name="PolarMod/droidbuild_device_z3tc" path="droidbuild/device/z3tc" remote="github" revision="opressor" />
 </manifest>
 
 

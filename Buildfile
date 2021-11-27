@@ -7,7 +7,7 @@ target_sakura(){
    fi
    exec "cp $PREV_BUILD_DIR/certbundle.zip.sc $STORAGE_DIR/certbundle.zip.sc"
    info "Launching build in docker"
-   exec docker run -it -v $STORAGE_DIR:/root/sakura droidbuild
+   exec docker run -it -v $STORAGE_DIR:/root/droid droidbuild
    success "Succesfully built PolarMod ROM"
    info "Updating target files for future incremental updates"
    exec "mv $PREV_BUILD_DIR/*.zip $PREV_BUILD_DIR/previous/"
@@ -17,24 +17,27 @@ target_sakura(){
 
 target_generate-keys(){
     exec "rm -f $PREV_BUILD_DIR/certbundle.zip.sc"
-    exec "docker run -v $STORAGE_DIR:/root/sakura --entrypoint '/root/scripts/container-generate-keys.sh' -it droidbuild"
+    exec "docker run -v $STORAGE_DIR:/root/droid --entrypoint '/root/scripts/container-generate-keys.sh' -it droidbuild"
     exec "cp $STORAGE_DIR/certbundle.zip.sc $PREV_BUILD_DIR/certbundle.zip.sc"
 }
 
+target_storage(){
+    exec mkdir -p $STORAGE_DIR
+    exec mkdir -p $STORAGE_DIR/out_dir
+    exec cp -r droidbuild $STORAGE_DIR/
+    exec cp Buildfile $STORAGE_DIR/
+    exec mkdir -p $STORAGE_DIR/.repo
+    exec mkdir -p $STORAGE_DIR/.repo/local_manifests
+    exec cp manifests/*.xml $STORAGE_DIR/
+    if [[ -f $PREV_BUILD_DIR/*.zip ]]; then
+       exec "cp $PREV_BUILD_DIR/*.zip $STORAGE_DIR/out_dir/" # For incremental updates support
+    fi
+}
 target_build-docker(){
    require_root
    require_command docker
    info "Preparing build"
-   info "Creating storage"
-   exec mkdir -p $STORAGE_DIR
-   exec mkdir -p "$PREV_BUILD_DIR"
-   exec mkdir -p "$PREV_BUILD_DIR/previous"
-   info "Preparing storage"
-   exec rm -f $STORAGE_DIR/Buildfile
-   exec rm -rf $STORAGE_DIR/droidbuild
-   exec cp build/Buildfile $STORAGE_DIR/Buildfile
-   exec cp -r build/droidbuild $STORAGE_DIR/droidbuild
-   exec mkdir -p $STORAGE_DIR/out_dir
+   target_storage
    if [[ -f $PREV_BUILD_DIR/*target*.zip ]]; then
         exec cp "$PREV_BUILD_DIR/*target*.zip" "$STORAGE_DIR/out_dir/"
    fi

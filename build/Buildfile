@@ -1,4 +1,4 @@
-BUILD_OUT_DIR="out_dir/"
+BUILD_OUT_DIR="$BASEDIR/out_dir/"
 DROIDDIR=$(pwd)
 
 export PATH="$PATH:/root/bin/:$BASEDIR/build/make/tools/bin/"
@@ -12,7 +12,21 @@ target_sync-initial(){
    exec git config --global user.name "$GIT_USERNAME"
    exec "mkdir -p $BASEDIR/.repo/local_manifests/"
    exec "cp /root/manifests/* .repo/local_manifests/"
-   exec "/root/bin/repo init --depth=1 -u $BASE_REPO -b $BASE_REPO_BRANCH && repo sync --current-branch --force-sync --no-clone-bundle --no-tags --optimized-fetch --prune -j $N_PROC" 
+   if ndef CONFIG_NPROC; then
+     warn "Setting number of threads automatically"
+     CONFIG_NPROC=`nproc`
+   fi
+   if ndef BASE_REPO; then
+     error "BASE_REPO is not defined!"
+     error "Aborting sync"
+     exit -1
+   fi
+   if ndef BASE_REPO_BRANCH; then
+     error "BASE_REPO_BRANCH is not defined!"
+     error "Aborting sync"
+     exit -1
+   fi
+   exec "/root/bin/repo init --depth=1 -u $BASE_REPO -b $BASE_REPO_BRANCH && repo sync --current-branch --force-sync --no-clone-bundle --no-tags --optimized-fetch --prune -j $CONFIG_NPROC" 
    success "Sync successful"
 }
 
@@ -50,6 +64,7 @@ target_build-device(){
   done
   # Set threads count for AOSP buildsystem
   if ndef CONFIG_NPROC; then
+    warn "Setting number of thread automatically"
     CONFIG_NPROC=`nproc`
   fi
   info "Will build with $CONFIG_NPROC threads"
@@ -67,6 +82,13 @@ target_build-device(){
   success "Cleaned-up after build"
 }
 
+target_devices(){
+  # Specifies device list
+  # Synchronize first
+  target_sync-initial
+  # Build each device
+  target_z3tc
+}
 include "droidbuild/aux.sh"
 
 DROIDBUILD_MODULES=()

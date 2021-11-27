@@ -96,12 +96,27 @@ target_any-signed(){
   exec "./build/tools/releasetools/ota_from_target_files --skip_compatibility_check -v -k ~/.android-certs/releasekey --block -i ${previous_target_files} ${out_dir}/${target_name}-signed-target_files.zip ${out_dir}/${target_name}-INCREMENTAL-OTA-signed.zip"
 }
 
-target_any-unsigned(){
+target_build-device-unsigned(){
  target_env
  export keys="test-keys"
+ print_info
+ change_dir $BASEDIR
+ if ndef CONFIG_NPROC; then
+   error "Can not read CONFIG_NPROC"
+   error "Aborting build."
+   exit -1
+ fi
+ if ndef TARGET_CODENAME; then
+   error "Can not read TARGET_CODENAME"
+   error "Aborting build."
+   exit -1
+ fi
+ if ndef TARGET_BUILDTYPE; then
+   error "Can not read TARGET_BUILDTYPE"
+ fi
  info "Starting build"
  exec ". build/envsetup.sh"
- exec "lunch lineage_${devname}-${buildtype}"
- exec "mka bacon -j6"
+ exec "lunch lineage_${TARGET_CODENAME}-${TARGET_BUILDTYPE}"
+ exec "mka bacon -j$CONFIG_NPROC"
  success "Built OTA package succesfully"
 }
