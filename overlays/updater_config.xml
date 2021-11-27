@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <!-- Set a custom Updater URL -->
-    <string name="updater_server_url" translatable="false">https://update.p01ar.net/update/polarmod/{device}/updates.json</string>
-</resources>
