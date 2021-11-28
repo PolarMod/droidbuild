@@ -34,8 +34,8 @@ target_env(){
   export out_dir=$BUILD_OUT_DIR
   require_directory $out_dir
   datetime=`date '+%Y%m%d_%H%M%S'`
-  export signature="${devname}-${datetime}-${buildtype}"
-  export BUILD_DISPLAY_ID="${devname}-${datetime}-${buildtype}-${BUILD_ID}"
+  export signature="${TARGE_CODENAME}-${datetime}-${TARGET_BUILDTYPE}"
+  export BUILD_DISPLAY_ID="${TARGET_CODENAME}-${datetime}-${TARGET_BUILDTYPE}-${BUILD_ID}"
 }
 
 target_build-device(){
@@ -63,6 +63,7 @@ target_build-device(){
   done
   # The configuration is done by calling droidbuild
   # Now we need to re-include files and call droidbuild
+  info $DROIDBUILD_MODULES
   for LOCAL_PATH in ${DROIDBUILD_MODULES[@]}; do
     include $LOCAL_PATH/Droidbuild.sh
     # Call droidbuild modules  
@@ -78,7 +79,7 @@ target_build-device(){
   if $TARGET_SIGNED_BUILD; then
     target_build-device-signed
   else
-    target_build-device_unsigned
+    target_build-device-unsigned
   fi
   success "Build completed"
   # Clean-up directories used by target, so they would not conflict with subsequent targets
@@ -106,12 +107,15 @@ droidbuild(){
     # Reset module list
     DROIDBUILD_MODULES=()  
     # Include droid build files
-    glob_files "**/Droidbuild.sh" $dir files
+    glob_files "**/Droidbuild.sh" $BASEDIR files
+    info $files
     for file in ${files[@]}; do
         TARGET_NAME="$1"
-        LOCAL_PATH="$(pwd)/$(dirname $file)"
+        LOCAL_PATH="$(dirname $file)"
         info "Including $file"
-        DROIDBUILD_MODULES+=$LOCAL_PATH
+#        info "LOCAL_PATH=$LOCAL_PATH"
+        DROIDBUILD_MODULES+=($LOCAL_PATH)
+	info $DROIDBUILD_MODULES
         include $file
     done
 }
