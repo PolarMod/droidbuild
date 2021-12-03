@@ -3,7 +3,7 @@ GIT_EMAIL="git@github.com"
 # Your Git username for repo configuration
 GIT_USERNAME="git"
 # Certificate subject for openssl key genration
-CERT_SUBJECT="/C=UA/ST=L'viv/L=L'vivs'ka oblast'/O=Polar Group/OU=Android development/CN=PolarMod/emailAddress=p01ar@p01ar.net"
+CERT_SUBJECT="/C=US/ST=CA/L=Mountain View/O=Android/OU=Android development/CN=Android/emailAddress=android@android.com"
 # Directory to build ROM
 STORAGE_DIR="$HOME/droid"
 # Directory to store builds,keys,etc.

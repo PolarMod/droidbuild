@@ -34,9 +34,22 @@ target_env(){
   export out_dir=$BUILD_OUT_DIR
   require_directory $out_dir
   datetime=`date '+%Y%m%d_%H%M%S'`
-  export signature="${TARGE_CODENAME}-${datetime}-${TARGET_BUILDTYPE}"
+  export signature="${TARGET_CODENAME}-${datetime}-${TARGET_BUILDTYPE}"
   export BUILD_DISPLAY_ID="${TARGET_CODENAME}-${datetime}-${TARGET_BUILDTYPE}-${BUILD_ID}"
 }
+
+target_droidbuild(){
+  leave_dir
+  droidbuild
+  info "Module found are ${DROIDBUILD_MODULE[@]}"
+  for LOCAL_PATH in ${DROIDBUILD_MODULES[@]}; do
+      info "Executing module $LOCAL_PATH"
+      include $LOCAL_PATH/Droidbuild.sh
+      droidbuild_module
+      leave_dir
+  done
+}
+
 
 target_build-device(){
   target_env  
@@ -50,11 +63,6 @@ target_build-device(){
     done
     target_sync-initial
   fi
-  # Device configuration is fully ready
-  # As device may use droidbuild modules other
-  # then its' specification we should update all modules
-  # once more
-  droidbuild
   # Now remove directories that must not exist when building
   # currrent target
   info "Removing directories that must not exist for current target"
@@ -63,12 +71,7 @@ target_build-device(){
   done
   # The configuration is done by calling droidbuild
   # Now we need to re-include files and call droidbuild
-  info $DROIDBUILD_MODULES
-  for LOCAL_PATH in ${DROIDBUILD_MODULES[@]}; do
-    include $LOCAL_PATH/Droidbuild.sh
-    # Call droidbuild modules  
-    droidbuild_module
-  done
+  target_droidbuild
   # Set threads count for AOSP buildsystem
   if ndef CONFIG_NPROC; then
     warn "Setting number of thread automatically"
@@ -77,6 +80,7 @@ target_build-device(){
   info "Will build with $CONFIG_NPROC threads"
   # Now we are ready for build 
   if $TARGET_SIGNED_BUILD; then
+    info "Calling signed build"
     target_build-device-signed
   else
     target_build-device-unsigned
@@ -92,7 +96,7 @@ target_build-device(){
 target_droid(){
   # Specifies device list
   # Synchronize first
-  target_sync-initial # <-- droidbuild_devvice_* repos MUST BE synchornized here
+  target_sync-initial # <-- droidbuild_device_* repos MUST BE synchornized here
   # Build each device
   # FIXME: Separate device list
   droidbuild  

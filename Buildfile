@@ -10,7 +10,7 @@ target_sakura(){
    exec docker run -it -v $STORAGE_DIR:/root/droid droidbuild
    success "Succesfully built PolarMod ROM"
    info "Updating target files for future incremental updates"
-   exec "mv $PREV_BUILD_DIR/*.zip $PREV_BUILD_DIR/previous/"
+   exec "mv $PREV_BUILD_DIR/out_dir/*.zip $PREV_BUILD_DIR/previous/"
    exec "cp $STORAGE_DIR/out_dir/*target*.zip $PREV_BUILD_DIR/"
    success "Done updating target files"
 }

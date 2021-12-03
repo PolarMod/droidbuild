@@ -3,11 +3,15 @@
   <remove-project name="frameworks_base"/>
   <remove-project name="system_update_engine" />  
   <remove-project name="LineageOS/android_bootable_recovery" />
+  <remove-project name="prebuilts_prebuiltapks" />
   <project name="PolarMod/android_vendor_polar" path="vendor/polar" remote="github" revision="opressor" />
   <project name="PolarMod/frameworks_base" path="frameworks/base" remote="github" revision="11" />
   <project name="PolarMod/android_external_PolarHosts" path="external/PolarHosts" remote="github" revision="opressor" />
   <project name="PolarMod/android_bootable_recovery" path="bootable/recovery" remote="github" revision="lineage-18.1" />
   <project name="PolarMod/system_update_engine" path="system/update_engine" remote="github" revision="11" /> 
+  <!-- LineageOS imports -->
+  <project name="LineageOS/android_packages_apps_Email" path="packages/apps/Email" remote="github" revision="lineage-17.1" />
+  <project name="LineageOS/android_packages_apps_UnifiedEmail" path="packages/apps/UnifiedEmail" remote="github" revision="lineage-17.1" />
   <!-- Devices (TODO: move to separate manifest) -->  
   <project name="PolarMod/droidbuild_device_z3tc" path="droidbuild/device/z3tc" remote="github" revision="opressor" />
 </manifest>

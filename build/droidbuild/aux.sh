@@ -1,9 +1,9 @@
-## AUX functions
+## Auxilary functions
 
 print_info(){
   info "---------------------------------------------------------------------------------"
   info "Target device:         ${TARGET_CODENAME}"
-  info "Target name:           ${target_name}"
+  info "Target name:           ${TARGET_FULLNAME}"
   info "Build type:            ${TARGET_BUILDTYPE}"
   info "Out directory:         ${out_dir}"
   info "Keys:                  ${TARGET_KEYS}"

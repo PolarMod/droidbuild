@@ -28,50 +28,11 @@ target_signing(){
 
 }
 
-target_patch(){
-  GITHUB="https://github.com/PolarMod"
-  require_command git
-  info "Patching packages"
-  exec rm -rf system/update_engine
-#  exec rm -rf frameworks/base
-  exec rm -rf bootable/recovery
-  info "Updating packages from PolarMod"
-  change_dir /tmp
-  exec git clone "$GITHUB/system_update_engine"
-#  exec git clone "$GITHUB/frameworks_base"
-  exec git clone "$GITHUB/android_bootable_recovery"
-  info "Replacing packages with patched ones"
-  exec mv system_update_engine $BASEDIR/system/update_engine
-#  exec mv frameworks_base $BASEDIR/frameworks/base
-  exec mv android_bootable_recovery $BASEDIR/bootable/recovery
-  success "Patched basic repositories"
-  leave_dir
-  info "Patching prebuilts"
-  exec rm -rf prebuilts/prebuiltapks
-  exec cp -r ~/polar/prebuilts prebuilts/prebuiltapks
-  success "Succesfully patched prebuilts"
-  info "Patching NetworkStack overlay"
-  exec rm -f vendor/lineage/overlay/common/packages/modules/NetworkStack/res/values/config.xml
-  exec cp ~/overlays/networkstack_config.xml vendor/lineage/overlay/common/packages/modules/NetworkStack/res/values/config.xml
-  success "Patched NetworkStack overlay"
-  info "Patching PRODUCT_PACKAGES"
-  change_dir vendor/lineage
-  exec patch config/common.mk ~/patches/common.mk.patch
-  success "Succesfully patched PRODUCT_PACKAGES"
-  leave_dir
-  info "Patching Updater"
-  exec mkdir -p vendor/lineage/overlay/common/packages/apps/Updater/res/values
-  exec mkdir -p vendor/lineage/overlay/packages/apps/Updater/res/values
-  exec cp ~/overlays/updater_config.xml vendor/lineage/overlay/common/packages/apps/Updater/res/values/strings.xml
-  exec cp ~/overlays/updater_config.xml vendor/lineage/overlay/packages/apps/Updater/res/values/strings.xml
-  success "Patched Updater package"
-  leave_dir
-}
-
-target_any-signed(){
+target_build-device-signed(){
   target_env
+  target_open-keys
   export keys="release-keys"
-  previous_target_files=$(get_latest_file "*${devname}*signed-target_files*" "${out_dir}")
+  previous_target_files=$(get_latest_file "*${TARGET_CODENAME}*signed-target_files*" "${out_dir}")
   target_name="PolarMod-Sakura-${signature}.${keys}"
   print_info
   info "Updating sigining keys..."
@@ -80,7 +41,7 @@ target_any-signed(){
   success "Updated signing keys"
   info "Starting build"
   exec ". build/envsetup.sh"
-  exec "lunch lineage_${devname}-${buildtype}"
+  exec "lunch lineage_${TARGET_CODENAME}-${TARGET_BUILDTYPE}"
   exec "mka target-files-package otatools -j6"
   success "Built target files package succesfully"
   info "Preparing signing enviroment"
@@ -92,8 +53,11 @@ target_any-signed(){
   info "Building full OTA"
   exec "./build/tools/releasetools/ota_from_target_files --skip_compatibility_check -v -k ~/.android-certs/releasekey --block ${out_dir}/${target_name}-signed-target_files.zip ${out_dir}/${target_name}-OTA-signed.zip"
   success "Succesfully built full OTA!"
-  info "Building incremental OTA"
-  exec "./build/tools/releasetools/ota_from_target_files --skip_compatibility_check -v -k ~/.android-certs/releasekey --block -i ${previous_target_files} ${out_dir}/${target_name}-signed-target_files.zip ${out_dir}/${target_name}-INCREMENTAL-OTA-signed.zip"
+  if [[ -f $previous_target_files ]]; then
+    info "Building incremental OTA"
+    exec "./build/tools/releasetools/ota_from_target_files --skip_compatibility_check -v -k ~/.android-certs/releasekey --block -i ${previous_target_files} ${out_dir}/${target_name}-signed-target_files.zip ${out_dir}/${target_name}-INCREMENTAL-OTA-signed.zip"
+  fi
+  target_close-keys
 }
 
 target_build-device-unsigned(){
