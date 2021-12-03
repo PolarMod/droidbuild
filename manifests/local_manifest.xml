@@ -16,8 +16,8 @@
   <!-- LineageOS imports -->
   <project name="LineageOS/android_packages_apps_Email" path="packages/apps/Email" remote="github" revision="lineage-17.1" />
   <project name="LineageOS/android_packages_apps_UnifiedEmail" path="packages/apps/UnifiedEmail" remote="github" revision="lineage-17.1" />
-  <!-- CalyxOS hardened malloc -->
-  <project name="CalyxOS/hardened_malloc" path="external/hardened_malloc" remote="github" revision="main" />
+  <!-- GrapheneOS hardened malloc -->
+  <project name="GrapheneOS/hardened_malloc" path="external/hardened_malloc" remote="github" revision="main" />
   <!-- Devices (TODO: move to separate manifest) -->  
   <project name="PolarMod/droidbuild_device_z3tc" path="droidbuild/device/z3tc" remote="github" revision="opressor" />
 </manifest>
