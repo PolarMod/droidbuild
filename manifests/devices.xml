@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <manifest>
-  <project name="PolarMod/droidbuild_device_z3tc" remote="github" revision="opressor" />
-  <project name="PolarMod/droidbuild_device_twolip" remote="github" revision="opressor" />
+  <project name="PolarMod/droidbuild_device_z3tc" path="droidbuild/device/z3tc" remote="github" revision="opressor" />
+  <project name="PolarMod/droidbuild_device_twolip" path="droidbuild/device/twolip" remote="github" revision="opressor" />
 </manifest>
