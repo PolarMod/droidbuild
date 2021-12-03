@@ -1,6 +1,6 @@
 include_if_exists "config.sh"
 
-target_sakura(){
+target_droid(){
    target_build-docker
    if [[ ! -f "$PREV_BUILD_DIR/certbundle.zip.sc" ]]; then
         target_generate-keys

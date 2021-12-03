@@ -1,10 +1,12 @@
 BUILD_OUT_DIR="$BASEDIR/out_dir/"
 DROIDDIR=$(pwd)
-
+DROID_TARGETS=()
 export PATH="$PATH:/root/bin/:$BASEDIR/build/make/tools/bin/"
 
+include "droidbuild/target.sh"
 include "droidbuild/keys.sh"
 include "droidbuild/generic.sh"
+
 include_if_exists "$BASEDIR/config.sh"
 
 target_sync-initial(){
@@ -98,9 +100,11 @@ target_droid(){
   # Synchronize first
   target_sync-initial # <-- droidbuild_device_* repos MUST BE synchornized here
   # Build each device
-  # FIXME: Separate device list
   droidbuild  
-  target_z3tc
+  for name in "${DROID_TARGETS[@]}"; do
+    info "Building target $name"
+    `target_${name}`
+  done
 }
 include "droidbuild/aux.sh"
 
