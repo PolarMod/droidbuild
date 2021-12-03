@@ -31,6 +31,11 @@ target_signing(){
 target_build-device-signed(){
   target_env
   target_open-keys
+  if ndef CONFIG_NPROC; then
+	  error "CONFIG_NPROC is not defined! Seems that build target called too early."
+	  error "Aborting build"
+	  exit -1
+  fi
   export keys="release-keys"
   previous_target_files=$(get_latest_file "*${TARGET_CODENAME}*signed-target_files*" "${out_dir}")
   target_name="PolarMod-Sakura-${signature}.${keys}"
@@ -42,7 +47,7 @@ target_build-device-signed(){
   info "Starting build"
   exec ". build/envsetup.sh"
   exec "lunch lineage_${TARGET_CODENAME}-${TARGET_BUILDTYPE}"
-  exec "mka target-files-package otatools -j6"
+  exec "mka target-files-package otatools -j$CONFIG_NPROC"
   success "Built target files package succesfully"
   info "Preparing signing enviroment"
   target_signing
