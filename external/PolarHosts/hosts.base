@@ -9,7 +9,7 @@
 ::1             localhost
 ::1             ip6-loaclhost
 #####################################################
-# PolarHosts revision 112a                          #
+# PolarHosts revision 113                           #
 # (C) Copyrighting Polar Group, 2021, Lviv, Ukraine #
 #####################################################
 # Technical hosts
@@ -272,6 +272,16 @@
 127.0.0.1        support1.like.video
 127.0.0.1        flag.bigo.sg
 127.0.0.1        api.likee.video
+# Kik
+127.0.0.1        bots-api.kik.com
+127.0.0.1        talk15380an.kik.com
+127.0.0.1        videos.kik.com
+127.0.0.1        sketch.kik.com
+127.0.0.1        home.kik.com
+127.0.0.1        meme.kik.com
+127.0.0.1        sticker-service.appspot.com
+127.0.0.1        api.tenor.co
+127.0.0.1        zprod.whisper.sh
 ##############################
 # TikTok, TanTan, Badoo, etc.
 127.0.0.1	comet3.wambacdn.net
