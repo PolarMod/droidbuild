@@ -29,6 +29,7 @@ target_storage(){
     exec mkdir -p $STORAGE_DIR/.repo
     exec mkdir -p $STORAGE_DIR/.repo/local_manifests
     exec cp manifests/*.xml $STORAGE_DIR/.repo/local_manifests
+    exec cp manifests/private/*.xml $STORAGE_DIR/.repo/local_manifests
     exec cp config.sh $STORAGE_DIR/
     if [[ -f $PREV_BUILD_DIR/*.zip ]]; then
        exec "cp $PREV_BUILD_DIR/*.zip $STORAGE_DIR/out_dir/" # For incremental updates support

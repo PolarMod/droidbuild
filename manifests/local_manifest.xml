@@ -1,23 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <manifest>
-  <!-- Remove projects that are shipped from PolarMod --> 
-  <remove-project name="frameworks_base"/>
-  <remove-project name="system_update_engine" />  
+  <!--Remotes-->	
+  <remote name="gitlab" fetch="https://gitlab.com/" />
+  <!--Remove overriden projects -->
+  <remove-project name="LineageOS/android_frameworks_base" />
   <remove-project name="LineageOS/android_bootable_recovery" />
-  <remove-project name="prebuilts_prebuiltapks" />
-  <!--<remove-project name="android_bionic" /> ->
   <!-- PolarMod projects -->
-  <!-- <project name="PolarMod/android_bionic" path="bionic" remote="github" revision="11" />  -->
-  <project name="PolarMod/android_vendor_polar" path="vendor/polar" remote="github" revision="opressor" />
-  <project name="PolarMod/frameworks_base" path="frameworks/base" remote="github" revision="11" />
-  <project name="PolarMod/android_external_PolarHosts" path="external/PolarHosts" remote="github" revision="opressor" />
   <project name="PolarMod/android_bootable_recovery" path="bootable/recovery" remote="github" revision="lineage-18.1" />
-  <project name="PolarMod/system_update_engine" path="system/update_engine" remote="github" revision="11" /> 
+  <project name="PolarMod/android_frameworks_base" path="frameworks/base" remote="github" revision="lineage-18.1" />
+  <project name="PolarMod/android_vendor_polar" path="vendor/polar" remote="github" revision="opressor" />
+  <project name="PolarMod/android_external_PolarHosts" path="external/PolarHosts" remote="github" revision="opressor" />
   <!-- LineageOS imports -->
   <project name="LineageOS/android_packages_apps_Email" path="packages/apps/Email" remote="github" revision="lineage-17.1" />
   <project name="LineageOS/android_packages_apps_UnifiedEmail" path="packages/apps/UnifiedEmail" remote="github" revision="lineage-17.1" />
-  <!-- GrapheneOS hardened malloc(postponed) -->
-    <!-- <project name="GrapheneOS/hardened_malloc" path="external/hardened_malloc" remote="github" revision="main" /> -->
+  <!-- crDrodi imports -->
+  <project name="crdroidandroid/android_external_faceunlock" path="external/faceunlock" remote="gitlab" revision="11.0" />
+  <project name="crdroidandroid/android_packages_apps_FaceUnlockService" path="packages/apps/FaceUnlockService" remote="github" revision="11.0" />
 </manifest>
-
-

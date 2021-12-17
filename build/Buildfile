@@ -28,7 +28,8 @@ target_sync-initial(){
      error "Aborting sync"
      exit -1
    fi
-   exec "/root/bin/repo init --depth=1 -u $BASE_REPO -b $BASE_REPO_BRANCH && repo sync --current-branch --force-sync --no-clone-bundle --no-tags --optimized-fetch --prune -j $CONFIG_NPROC" 
+   exec "repo init --depth=1 -u $BASE_REPO -b $BASE_REPO_BRANCH"
+   exec "repo sync --current-branch --force-sync --no-clone-bundle --no-tags --optimized-fetch --prune -j $CONFIG_NPROC" 
    success "Sync successful"
 }
 
@@ -103,7 +104,7 @@ target_droid(){
   droidbuild  
   for name in "${DROID_TARGETS[@]}"; do
     info "Building target $name"
-    `target_${name}`
+    eval "target_$name"
   done
 }
 include "droidbuild/aux.sh"
