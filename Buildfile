@@ -28,6 +28,7 @@ target_storage(){
     exec cp build/Buildfile $STORAGE_DIR/
     exec mkdir -p $STORAGE_DIR/.repo
     exec mkdir -p $STORAGE_DIR/.repo/local_manifests
+    exec rm -f $STORAGE_DIR/.repo/local_manifests/*.xml
     exec cp manifests/*.xml $STORAGE_DIR/.repo/local_manifests
     exec cp manifests/private/*.xml $STORAGE_DIR/.repo/local_manifests
     exec cp config.sh $STORAGE_DIR/
