@@ -12,10 +12,13 @@
   <project name="PolarMod/android_frameworks_base" path="frameworks/base" remote="github" revision="lineage-18.1" />
   <project name="PolarMod/android_vendor_polar" path="vendor/polar" remote="github" revision="opressor" />
   <project name="PolarMod/android_external_PolarHosts" path="external/PolarHosts" remote="github" revision="opressor" />
+  <project name="PolarMod/android_packages_apps_PolarSettings" path="packages/apps/PolarSettings" remote="github" revision="opressor" />
   <!-- LineageOS imports -->
   <project name="LineageOS/android_packages_apps_Email" path="packages/apps/Email" remote="github" revision="lineage-17.1" />
   <project name="LineageOS/android_packages_apps_UnifiedEmail" path="packages/apps/UnifiedEmail" remote="github" revision="lineage-17.1" />
+  <!--OmniJaw from ProjectSakura-->
+  <project name="ProjectSakura/packages_services_OmniJaws" path="packages/services/OminJaws" remote="github" revision="11" />
   <!-- LordShen's face unlock from ProjectSakura -->
   <project name="LordShen/external_faceunlock" path="external/faceunlock" remote="gitlab" revision="11" />
-  <project name="LordShen/packages_apps_FaceUnlockService" path="packages/apps/FaceUnlockService" remote="gitlab" revision="11" />
+  <project name="PixelExperience/packages_apps_FaceUnlockService" path="packages/apps/FaceUnlockService" remote="github" revision="eleven" />
 </manifest>

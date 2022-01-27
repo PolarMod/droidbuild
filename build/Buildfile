@@ -14,7 +14,7 @@ target_sync-initial(){
    exec git config --global user.name "$GIT_USERNAME"
    exec "mkdir -p $BASEDIR/.repo/local_manifests/"
    exec "cp /root/manifests/*.xml .repo/local_manifests/"
-   exec "cp /root/manifests/private/*.xml .repo/local_manifests/"
+   exec "cp /root/manifests/private/* .repo/local_manifests/"
    if ndef CONFIG_NPROC; then
      warn "Setting number of threads automatically"
      CONFIG_NPROC=`nproc`
