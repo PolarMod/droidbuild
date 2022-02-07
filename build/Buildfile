@@ -135,7 +135,7 @@ include droidbuild/build_vars.sh
 # When this file is loaded
 # call droidbuild function
 # in order to collect available 
-# target, so they would be 
+# targets, so they would be 
 # available for external calling
 droidbuild
 
