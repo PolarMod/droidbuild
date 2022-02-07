@@ -38,7 +38,7 @@ target_build-device-signed(){
   fi
   export keys="release-keys"
   previous_target_files=$(get_latest_file "*${TARGET_CODENAME}*signed-target_files*" "${out_dir}")
-  target_name="PolarMod-Sakura-${signature}.${keys}"
+  target_name="PolarMod-${version_codename}-${signature}.${keys}"
   print_info
   info "Updating sigining keys..."
   #exec rm -rf ~/.android-certs

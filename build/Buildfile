@@ -3,6 +3,8 @@ DROIDDIR=$(pwd)
 DROID_TARGETS=()
 export PATH="$PATH:/root/bin/:$BASEDIR/build/make/tools/bin/"
 
+version_codename="opressor"
+
 include "droidbuild/target.sh"
 include "droidbuild/keys.sh"
 include "droidbuild/generic.sh"
