@@ -8,10 +8,10 @@
 255.255.255.255	broadcasthost
 ::1             localhost
 ::1             ip6-loaclhost
-#####################################################
-# PolarHosts revision 113                           #
-# (C) Copyrighting Polar Group, 2021, Lviv, Ukraine #
-#####################################################
+############################################################
+# PolarHosts revision 114                                  #
+# (C) Copyrighting Polar Group, 2020 - 2022, Lviv, Ukraine #
+############################################################
 # Technical hosts
 10.8.0.1        vpn.polar # Were /etc/hosts designed to do reverse lookups?
 31.131.21.192   cloud.polar
@@ -45,7 +45,6 @@
 127.0.0.1        2ch.rip
 127.0.0.1        arhivach.ng
 127.0.0.1        ipolk.ru
-127.0.0.1        www.google-analytics.com
 127.0.0.1        counter.yadro.ru
 127.0.0.1        activation.jetbrains.com
 127.0.0.1        userapi.com
@@ -63,8 +62,6 @@
 127.0.0.1        ads.adfox.ru
 127.0.0.1        r.mail.ru
 127.0.0.1        metrics.icloud.com
-127.0.0.1        cse.google.com
-127.0.0.1        cse.google.com.ua
 127.0.0.1        b1nary.tk
 127.0.0.1        music.yandex.ru
 127.0.0.1        connect.facebook.net
@@ -230,7 +227,6 @@
 127.0.0.1        m.my.com
 127.0.0.1        app-measurement.com
 127.0.0.1        dns.google
-127.0.0.1        www.googleapis.com
 127.0.0.1        googleads.g.doubleclick.net
 127.0.0.1        report.appmetrica.yandex.net
 127.0.0.1        my.mail.ru
@@ -282,11 +278,17 @@
 127.0.0.1        sticker-service.appspot.com
 127.0.0.1        api.tenor.co
 127.0.0.1        zprod.whisper.sh
+# Zenly
+127.0.0.1        znly.co
+127.0.0.1        zen.ly
+127.0.0.1        zenlyapp.cn
+127.0.0.1        rpc-lenses.znly.co
+127.0.0.1        rpc.znly.co
+127.0.0.1        analytics.zenly-app.com
 ##############################
 # TikTok, TanTan, Badoo, etc.
 127.0.0.1	comet3.wambacdn.net
 127.0.0.1	scruffy.core.tf
-127.0.0.1	firebaselogging-pa.googleapis.com
 127.0.0.1	can.wmbcdn.net
 127.0.0.1	adc3-launch.adcolony.com
 127.0.0.1	connect.vk.com
@@ -313,8 +315,6 @@
 127.0.0.1	x.connected2.me
 127.0.0.1	dc1hf5hqe7d0f.cdn-s3.c2me.cc
 127.0.0.1	api.branch.io
-127.0.0.1	firebaseremoteconfig.googleapis.com
-127.0.0.1	firebaseinstallations.googleapis.com
 127.0.0.1	random-chat-app.ru
 127.0.0.1	bma-ssl-us1.badoo.app
 127.0.0.1	pd1eu.badoocdn.com
@@ -322,7 +322,6 @@
 127.0.0.1	pd2us.badoocdn.com
 127.0.0.1	bma-ssl-us1.badoo.app
 127.0.0.1	j21pwj4hnadzi4zpnhaw7iegjbmlxua3kv5jlkrw350cfa58c97bba88am1.e.aa.online-metrix.net
-127.0.0.1	content-autofill.googleapis.com
 127.0.0.1	ccardsus1.badoo.com
 127.0.0.1	anonchatapi.stivisto.com
 127.0.0.1	api.revenuecat.com
@@ -343,7 +342,6 @@
 127.0.0.1	pure-api.soulplatform.com
 127.0.0.1	sentry.soulplatform.com
 127.0.0.1	anonchat.app
-127.0.0.1	firebaseinappmessaging.googleapis.com
 127.0.0.1	lbs.netease.im
 127.0.0.1	video-log.eu-central-1.log.aliyuncs.com
 127.0.0.1	lbs.netease.im
@@ -1369,3 +1367,4 @@
 127.0.0.1    21cn.com
 127.0.0.1    cmbchina.com
 127.0.0.1    ixigua.com
+###############################################
