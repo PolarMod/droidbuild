@@ -13,3 +13,6 @@ TARGET_KEYS_TYPE="test-keys"
 # microG target should be available in make, so
 # we need to export it.
 export TARGET_USES_MICROG=0
+
+# Whether target support G-Visual
+export TARGET_SUPPORTS_GVISUAL=1

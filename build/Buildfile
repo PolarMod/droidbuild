@@ -84,7 +84,8 @@ target_build-device(){
     CONFIG_NPROC=`nproc`
   fi
   info "Will build with $CONFIG_NPROC threads"
-  # Now we are ready for build 
+  # Now we are ready for build
+  leave_dir
   if $TARGET_SIGNED_BUILD; then
     info "Calling signed build"
     target_build-device-signed

@@ -50,7 +50,8 @@ target_build-docker(){
 }
 
 target_shell(){
-   target_build-docker
+   target_build-docker 
+   exec "cp $PREV_BUILD_DIR/certbundle.zip.sc $STORAGE_DIR/certbundle.zip.sc"
    exec docker run -v $STORAGE_DIR:/root/droid --entrypoint /bin/bash -it droidbuild
 }
 

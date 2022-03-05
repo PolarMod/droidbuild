@@ -6,7 +6,8 @@
   <remove-project name="LineageOS/android_frameworks_base" />
   <remove-project name="LineageOS/android_packages_apps_Settings"/>
   <remove-project name="LineageOS/android_bootable_recovery" />
-  <remove-projece name="LineageOS/android_packages_apps_SetupWizard" />
+  <remove-project name="LineageOS/android_packages_apps_SetupWizard" />
+  <remove-project name="LineageOS/android_build" />
   <!-- PolarMod projects -->
   <project name="PolarMod/android_packages_apps_Settings" path="packages/apps/Settings" remote="github" revision="lineage-18.1" />
   <project name="PolarMod/android_bootable_recovery" path="bootable/recovery" remote="github" revision="lineage-18.1" />
@@ -15,13 +16,19 @@
   <project name="PolarMod/android_external_PolarHosts" path="external/PolarHosts" remote="github" revision="opressor" />
   <project name="PolarMod/android_packages_apps_PolarSettings" path="packages/apps/PolarSettings" remote="github" revision="opressor" />
   <project name="PolarMod/droidbuild_bootloader_lock-support" path="droidbuild/bootloader/lock-support" remote="github" revision="opressor" />
-  <project name="PolarMod/android_packages_apps_SetupWizard" path="packages/apps/SetupWizard" remote="github" revision="opressor" />
+  <project name="PolarMod/android_packages_apps_SetupWizard" path="packages/apps/SetupWizard" remote="github" revision="lineage-18.1" />
+  <project path="build/make" name="PolarMod/android_build">
+    <copyfile src="core/root.mk" dest="Makefile" />
+    <linkfile src="CleanSpec.mk" dest="build/CleanSpec.mk" />
+    <linkfile src="buildspec.mk.default" dest="build/buildspec.mk.default" />
+    <linkfile src="core" dest="build/core" />
+    <linkfile src="envsetup.sh" dest="build/envsetup.sh" />
+    <linkfile src="target" dest="build/target" />
+    <linkfile src="tools" dest="build/tools" />
+  </project>
   <!-- LineageOS imports -->
   <project name="LineageOS/android_packages_apps_Email" path="packages/apps/Email" remote="github" revision="lineage-17.1" />
   <project name="LineageOS/android_packages_apps_UnifiedEmail" path="packages/apps/UnifiedEmail" remote="github" revision="lineage-17.1" />
   <!--OmniJaw from ProjectSakura-->
   <project name="ProjectSakura/packages_services_OmniJaws" path="packages/services/OminJaws" remote="github" revision="11" />
-  <!-- LordShen's face unlock from ProjectSakura -->
-  <project name="LordShen/external_faceunlock" path="external/faceunlock" remote="gitlab" revision="11" />
-  <project name="PixelExperience/packages_apps_FaceUnlockService" path="packages/apps/FaceUnlockService" remote="github" revision="eleven" />
 </manifest>
