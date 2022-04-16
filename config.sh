@@ -9,7 +9,7 @@ STORAGE_DIR="/home/p01ar/droid"
 # Directory to store builds,keys,etc.
 PREV_BUILD_DIR="/home/p01ar/droid-out"
 # Our ROM base repo(ProjectSakura, but may be different)
-BASE_REPO="git://github.com/LineageOS/android.git"
+BASE_REPO="https://github.com/LineageOS/android.git"
 # Base repo barnch
 BASE_REPO_BRANCH="lineage-18.1"
 

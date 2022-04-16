@@ -89,3 +89,26 @@ target_build-device-unsigned(){
  exec "mka bacon -j$CONFIG_NPROC"
  success "Built OTA package succesfully"
 }
+
+target_build-emulator(){
+ target_env
+ export keys="test-keys"
+ if ndef CONFIG_NPROC; then
+   error "Can not read CONFIG_NPROC"
+   error "Aborting build."
+   exit -1
+ fi
+ if ndef TARGET_BUILDTYPE; then
+   error "Can not read TARGET_BUILDTYPE"
+   exit -1
+ fi
+ if ndef TARGET_ARCH; then
+   error "Can not read TARGET_ARCH"
+   exit -1
+ fi
+ info "Starting build"
+ exec ". build/envsetup.sh"
+ exec "lunch lineage_${TARGET_ARCH}-${TARGET_BUILDTYPE}"
+ exec "mka -j$CONFIG_NPROC"
+ success "Built emulator package succesfully"
+}

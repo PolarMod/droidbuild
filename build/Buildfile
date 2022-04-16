@@ -100,6 +100,45 @@ target_build-device(){
   success "Cleaned-up after build"
 }
 
+target_build-emulator(){
+  target_env
+  require_command nproc
+  if $TARGET_NEEDS_RESYNC; then
+    info "Target requires to resync sources"
+    info "Updating local manifests"
+    exec "rm -rf $BASEDIR/.repo/local_manifests/*.xml"
+    for file in ${TARGET_LOCAL_MANIFESTS[@]}; do
+      exec "cp ${file} $BASEDIR/.repo/local_manifests/"
+    done
+    target_sync-initial
+  fi
+  # Now remove directories that must not exist when building
+  # currrent target
+  info "Removing directories that must not exist for current target"
+  for dir in ${TARGET_REMOVE_DIRS[@]}; do
+    exec "rm -rf $dir"
+  done
+  # The configuration is done by calling droidbuild
+  # Now we need to re-include files and call droidbuild
+  target_droidbuild
+  # Set threads count for AOSP buildsystem
+  if ndef CONFIG_NPROC; then
+    warn "Setting number of threads automatically"
+    CONFIG_NPROC=`nproc`
+  fi
+  info "Will build with $CONFIG_NPROC threads"
+  # Now we are ready for build
+  leave_dir
+  target_build-emulator
+  success "Build completed"
+  # Clean-up directories used by target, so they would not conflict with subsequent targets
+  for dir in ${TARGET_USE_DIRS[@]}; do
+    exec "rm -rf ${dir}"
+  done
+  success "Cleaned-up after build"
+}
+
+
 target_droid(){
   # Specifies device list
   # Synchronize first
