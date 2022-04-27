@@ -1,4 +1,4 @@
 #!/bin/bash
 
-cd ~/sakura
+cd /root/droid/
 build generate-keys

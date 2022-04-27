@@ -1,23 +1,3 @@
-
-target_patch-bootloader(){
-  require_command sed
-  require_command patch
-  info "Patching bootloader locking support"
-  #info "Patching sm8150-common"
-  #change_dir device/oneplus/sm8150-common
-  #exec "sed -i 's/^BOARD_AVB_MAKE_VBMETA_IMAGE_ARGS += --flags 2/#BOARD_AVB_MAKE_VBMETA_IMAGE_ARGS += --flags 2/' BoardConfigCommon.mk"
-  #exec "sed -i 's/^BOARD_AVB_MAKE_VBMETA_IMAGE_ARGS += --set_hashtree_disabled_flag/#BOARD_AVB_MAKE_VBMETA_IMAGE_ARGS += --#set_hashtree_disabled_flag/' BoardConfigCommon.mk"
-  #exec "sed -i 's/^BOARD_AVB_VBMETA_SYSTEM_KEY_PATH := external\/avb\/test\/data\/testkey_rsa2048.pem/BOARD_AVB_KEY_PATH := \/root\/.android-certs\/releasekey.key/' BoardConfigCommon.mk"
-  #exec "sed -i 's/^# OMX/# OEM Unlock reporting\nPRODUCT_DEFAULT_PROPERTY_OVERRIDES += \\\n    ro.oem_unlock_supported=1\n\n# OMX/' common.mk"
-  #success "Patched sm8150-common succesfully"
-  #leave_dir
-  info "Patching core buildsystem"
-  change_dir build/core
-  exec patch Makefile ~/patches/core-Makefile-fix-18.1.patch
-  leave_dir
-  success "Succesfully patched bootloader locking support"
-}
-
 target_signing(){
   exec rm -rf build/make/tools/framework
   exec rm -rf build/make/tools/lib64
@@ -28,7 +8,33 @@ target_signing(){
 
 }
 
+target_ccache(){
+  if def CCACHE_FLAG; then
+     return
+  fi
+  if def ENABLE_CCACHE; then
+     if $ENABLE_CCACHE; then
+        export USE_CCACHE=1
+        export CCACHE_EXEC=$(which ccache)
+        info "Enabling ccache"
+        info "CCache executable path: $CCACHE_EXEC"
+        if ndef CCACHE_SIZE; then
+           error "CCache enabled, but size is missing!"
+           error "Aborting build."
+           exit -1
+        fi
+        exec "$CCACHE_EXEC -M $CCACHE_SIZE"
+    fi
+  else
+    warn "Can not determin CCache status, because ENABLE_CCACHE is not defined, defaulting to false"
+  fi
+  export CCACHE_FLAG=true
+}
+
 target_build-device-signed(){
+  target_ccache
+  TARGET_KEYS="release-keys"
+  export keys="release-keys"
   target_env
   target_open-keys
   if ndef CONFIG_NPROC; then
@@ -66,8 +72,10 @@ target_build-device-signed(){
 }
 
 target_build-device-unsigned(){
- target_env
+ target_ccache
+ TARGET_KEYS="test-keys"
  export keys="test-keys"
+ target_env
  print_info
  change_dir $BASEDIR
  if ndef CONFIG_NPROC; then
@@ -82,6 +90,7 @@ target_build-device-unsigned(){
  fi
  if ndef TARGET_BUILDTYPE; then
    error "Can not read TARGET_BUILDTYPE"
+   exit -1
  fi
  info "Starting build"
  exec ". build/envsetup.sh"
@@ -90,9 +99,11 @@ target_build-device-unsigned(){
  success "Built OTA package succesfully"
 }
 
-target_build-emulator(){
- target_env
+target_build-emulator-generic(){
+ target_ccache
+ TARGET_KEYS="test-keys"
  export keys="test-keys"
+ target_env
  if ndef CONFIG_NPROC; then
    error "Can not read CONFIG_NPROC"
    error "Aborting build."
@@ -109,6 +120,9 @@ target_build-emulator(){
  info "Starting build"
  exec ". build/envsetup.sh"
  exec "lunch lineage_${TARGET_ARCH}-${TARGET_BUILDTYPE}"
- exec "mka -j$CONFIG_NPROC"
+ exec "mka sdk_addon -j$CONFIG_NPROC"
  success "Built emulator package succesfully"
+ target_name="PolarMod-${version_codename}-${signature}.${keys}"
+ info "Moving resulting images ZIP to out_dir"
+ move "$BASEDIR/out/host/linux-x86/sdk_addon/*-img.zip" "$out_dir/$target_name-SYSIMAGES.zip"
 }

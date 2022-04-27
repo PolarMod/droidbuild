@@ -29,6 +29,6 @@
   <!-- LineageOS imports -->
   <project name="LineageOS/android_packages_apps_Email" path="packages/apps/Email" remote="github" revision="lineage-17.1" />
   <project name="LineageOS/android_packages_apps_UnifiedEmail" path="packages/apps/UnifiedEmail" remote="github" revision="lineage-17.1" />
-  <!--OmniJaw from ProjectSakura-->
+  <!--OmniJaws from ProjectSakura-->
   <project name="ProjectSakura/packages_services_OmniJaws" path="packages/services/OminJaws" remote="github" revision="11" />
 </manifest>

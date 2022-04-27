@@ -1,6 +1,9 @@
+# Droidbuild variables
 BUILD_OUT_DIR="$BASEDIR/out_dir/"
 DROIDDIR=$(pwd)
 DROID_TARGETS=()
+
+# Update $PATH
 export PATH="$PATH:/root/bin/:$BASEDIR/build/make/tools/bin/"
 
 version_codename="opressor"
@@ -41,7 +44,7 @@ target_env(){
   require_directory $out_dir
   datetime=`date '+%Y%m%d_%H%M%S'`
   export signature="${TARGET_CODENAME}-${datetime}-${TARGET_BUILDTYPE}"
-  export BUILD_DISPLAY_ID="${TARGET_CODENAME}-${datetime}-${TARGET_BUILDTYPE}-${BUILD_ID}"
+  export BUILD_DISPLAY_ID="${TARGET_CODENAME}-${datetime}-${TARGET_BUILDTYPE}-${TARGET_KEYS}"
 }
 
 target_droidbuild(){
@@ -129,7 +132,7 @@ target_build-emulator(){
   info "Will build with $CONFIG_NPROC threads"
   # Now we are ready for build
   leave_dir
-  target_build-emulator
+  target_build-emulator-generic
   success "Build completed"
   # Clean-up directories used by target, so they would not conflict with subsequent targets
   for dir in ${TARGET_USE_DIRS[@]}; do
@@ -143,8 +146,15 @@ target_droid(){
   # Specifies device list
   # Synchronize first
   target_sync-initial # <-- droidbuild_device_* repos MUST BE synchornized here
-  # Build each device
-  droidbuild  
+  # Reset DROID_TARGETS
+  DROID_TARGETS=()
+  # Update modules
+  droidbuild
+  # Print build sequence
+  info "Build sequence"
+  for name in "${DROID_TARGETS[@]}"; do
+      info "   - $name"
+  done
   for name in "${DROID_TARGETS[@]}"; do
     info "Building target $name"
     eval "target_$name"

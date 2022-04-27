@@ -23,21 +23,32 @@ target_generate-keys(){
     success "Done."
 }
 
+open_keys(){
+      require_command unzip
+      require_command srm
+      change_dir /tmp
+      info "Opening encrypted key bundle"
+      exec "scrypt dec $BASEDIR/certbundle.zip.sc > certbundle.zip"
+      export KEYS_OPEN=1
+      exec unzip certbundle.zip
+      #exec srm -rf /root/.android-certs $BASEDIR/.android-certs
+      exec cp -r android-certs /root/.android-certs
+      exec cp -r android-certs $BASEDIR/.android-certs
+      exec srm certbundle.zip
+      exec srm -r /tmp/android-certs
+      leave_dir
+}
+
 target_open-keys(){
-    require_command unzip
-    require_command srm
-    change_dir /tmp
-    info "Opening encrypted key bundle"
-    exec "scrypt dec $BASEDIR/certbundle.zip.sc > certbundle.zip"
-    exec unzip certbundle.zip
-    #exec srm -rf /root/.android-certs $BASEDIR/.android-certs
-    exec cp -r android-certs /root/.android-certs
-    exec cp -r android-certs $BASEDIR/.android-certs
-    srm certbundle.zip
-    leave_dir
+    if ndef KEYS_OPEN; then
+        open_keys
+    elif [[ KEYS_OPEN=0 ]]; then
+        open_keys
+    fi
 }
 
 target_close-keys(){
     require_command srm
     srm -r /root/.android-certs $BASEDIR/.android-certs
+    export KEYS_OPEN=0
 }

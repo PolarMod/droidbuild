@@ -8,8 +8,12 @@ CERT_SUBJECT="/C=US/ST=CA/L=Mountain View/O=Android/OU=Android development/CN=An
 STORAGE_DIR="/home/p01ar/droid"
 # Directory to store builds,keys,etc.
 PREV_BUILD_DIR="/home/p01ar/droid-out"
-# Our ROM base repo(ProjectSakura, but may be different)
+# Our ROM base repo(LineageOS, but may be different)
 BASE_REPO="https://github.com/LineageOS/android.git"
 # Base repo barnch
 BASE_REPO_BRANCH="lineage-18.1"
+# CCache
+ENABLE_CCACHE=true
+# CCache size
+CCACHE_SIZE=50G
 
