@@ -12,10 +12,10 @@
   <project name="PolarMod/android_packages_apps_Settings" path="packages/apps/Settings" remote="github" revision="lineage-18.1" />
   <project name="PolarMod/android_bootable_recovery" path="bootable/recovery" remote="github" revision="lineage-18.1" />
   <project name="PolarMod/android_frameworks_base" path="frameworks/base" remote="github" revision="lineage-18.1" />
-  <project name="PolarMod/android_vendor_polar" path="vendor/polar" remote="github" revision="opressor" />
-  <project name="PolarMod/android_external_hosts" path="external/hosts" remote="github" revision="opressor" />
-  <project name="PolarMod/android_packages_apps_PolarSettings" path="packages/apps/PolarSettings" remote="github" revision="opressor" />
-  <project name="PolarMod/droidbuild_bootloader_lock-support" path="droidbuild/bootloader/lock-support" remote="github" revision="opressor" />
+  <project name="PolarMod/android_vendor_polar" path="vendor/polar" remote="github" revision="magika" />
+  <project name="PolarMod/android_external_hosts" path="external/hosts" remote="github" revision="magika" />
+  <project name="PolarMod/android_packages_apps_PolarSettings" path="packages/apps/PolarSettings" remote="github" revision="magika" />
+  <project name="PolarMod/droidbuild_bootloader_lock-support" path="droidbuild/bootloader/lock-support" remote="github" revision="magika" />
   <project name="PolarMod/android_packages_apps_SetupWizard" path="packages/apps/SetupWizard" remote="github" revision="lineage-18.1" />
   <project path="build/make" name="PolarMod/android_build">
     <copyfile src="core/root.mk" dest="Makefile" />
