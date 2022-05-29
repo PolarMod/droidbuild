@@ -6,7 +6,7 @@ DROID_TARGETS=()
 # Update $PATH
 export PATH="$PATH:/root/bin/:$BASEDIR/build/make/tools/bin/"
 
-version_codename="opressor"
+version_codename="magika"
 
 include "droidbuild/target.sh"
 include "droidbuild/keys.sh"
