@@ -41,5 +41,5 @@
   <!-- OminJaws weather provider -->
   <project name="PolarMod/android_packages_services_OmniJaws" path="packages/services/OmniJaws" remote="github" revision="magika" />
   <!-- GrapheneOS imports -->
-  <project name="GrapheneOS/hardened_malloc" path="external/hardened_malloc" remote="github" revision="19.1" /> 
+  <project name="GrapheneOS/hardened_malloc" path="external/hardened_malloc" remote="github" revision="main" /> 
 </manifest>
