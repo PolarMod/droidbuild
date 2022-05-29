@@ -20,6 +20,7 @@
   <project name="PolarMod/droidbuild_bootloader_lock-support" path="droidbuild/bootloader/lock-support" remote="github" revision="magika" />
   <project name="PolarMod/android_packages_apps_SetupWizard" path="packages/apps/SetupWizard" remote="github" revision="lineage-19.1" />
   <project name="PolarMod/android_packages_apps_Trebuchet" path="packages/apps/Trebuchet" remote="github" revision="lineage-19.1" />
+  <project name="PolarMod/android_bionic" path="bionic" remote="github" revision="lineage-19.1" />
   <project path="build/make" name="PolarMod/android_build" revsion="lineage-19.1">
     <copyfile src="core/root.mk" dest="Makefile" />
     <linkfile src="CleanSpec.mk" dest="build/CleanSpec.mk" />
