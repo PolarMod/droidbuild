@@ -50,12 +50,18 @@ target_env(){
 target_droidbuild(){
   leave_dir
   droidbuild
-  info "Module found are ${DROIDBUILD_MODULE[@]}"
+  info "Modules found are ${DROIDBUILD_MODULE[@]}"
+  declare -a DROIDBUILD_POSTRUN_MODULES=()
   for LOCAL_PATH in ${DROIDBUILD_MODULES[@]}; do
       info "Executing module $LOCAL_PATH"
       include $LOCAL_PATH/Droidbuild.sh
       droidbuild_module
       leave_dir
+  done
+  for LOCAL_PATH in ${DROIDBUILD_MODULES[@]}; do
+      info "Post-running module $LOCAL_PATH"
+      include $LOCAL_PATH/Droidbuild.sh
+      droidbuild_postrun
   done
 }
 
