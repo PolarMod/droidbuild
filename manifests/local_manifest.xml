@@ -42,6 +42,9 @@
   <project name="PolarMod/android_packages_services_OmniJaws" path="packages/services/OmniJaws" remote="github" revision="magika" />
   <!-- GrapheneOS imports -->
   <project name="GrapheneOS/hardened_malloc" path="external/hardened_malloc" remote="github" revision="main" /> 
-  <!-- CrDroidAndroid imports -->
-  <project name="crdroidandroid/android_packages_apps_GameSpace" remote="github" revision="12.1" />
+  <!-- chaldeaprjkt imports -->
+  <project name="chaldeaprjkt/packages_apps_GameSpace" path="packages/apps/GameSpace" remote="github" revision="12.1" />
+  <!-- crdroid imports -->
+  <project name="crdroidandroid/android_external_faceunlock" path="external/faceunlock" remote="gitlab" revision="12.1" />
+  <project name="crdroidandroid/android_packages_apps_FaceUnlockService" path="packages/apps/FaceUnlockService" revision="12.1" />
 </manifest>
