@@ -1,5 +1,5 @@
 # Droidbuild variables
-BUILD_OUT_DIR="$BASEDIR/out_dir/"
+BUILD_OUT_DIR="$BASEDIR/out_dir"
 DROIDDIR=$(pwd)
 DROID_TARGETS=()
 

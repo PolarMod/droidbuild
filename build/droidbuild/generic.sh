@@ -42,8 +42,10 @@ target_build-device-signed(){
 	  error "Aborting build"
 	  exit -1
   fi
+  leave_dir
   export keys="release-keys"
-  previous_target_files=$(get_latest_file "*${TARGET_CODENAME}*signed-target_files*" "${out_dir}")
+  #exec get_latest_file "*${TARGET_CODENAME}*signed-target_files*" "${out_dir}"
+  previous_target_files=$(find $out_dir -name "*${TARGET_CODENAME}*signed-target_files*" | head -n 1)
   target_name="PolarMod-${version_codename}-${signature}.${keys}"
   print_info
   info "Updating sigining keys..."

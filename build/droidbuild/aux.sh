@@ -15,7 +15,8 @@ print_info(){
 # $1 -- pattern to match
 # $2 -- directory to search
 get_latest_file(){
-   echo `find $2 -name $1 -print0 | xargs -r -0 ls -1 -t | head -1`
+	#echo $(find $2 -wholename $1 -print0 | xargs -r -0 ls -1 -t | head -1)
+	echo `find $2 -wholename $1 | head -n 1`
 }
 
 # $1 -- pattern to search
