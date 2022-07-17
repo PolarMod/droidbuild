@@ -14,6 +14,10 @@ include "droidbuild/generic.sh"
 
 include_if_exists "$BASEDIR/config.sh"
 
+if ndef NO_REMOVE_MANIFESTS; then
+    export NO_REMOVE_MANIFESTS=0
+fi
+
 target_sync-initial(){
    exec git config --global user.email "$GIT_EMAIL"
    exec git config --global user.name "$GIT_USERNAME"
@@ -72,7 +76,9 @@ target_build-device(){
   if $TARGET_NEEDS_RESYNC; then
     info "Target requires to resync sources"
     info "Updating local manifests"
-    exec "rm -rf $BASEDIR/.repo/local_manifests/*.xml"
+    if [[ $NO_REMOVE_MANIFESTS -eq 0 ]]; then
+        exec "rm -rf $BASEDIR/.repo/local_manifests/*.xml"
+    fi
     for file in ${TARGET_LOCAL_MANIFESTS[@]}; do
       exec "cp ${file} $BASEDIR/.repo/local_manifests/"
     done
