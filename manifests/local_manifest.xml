@@ -49,4 +49,6 @@
   <!-- crdroid imports -->
   <project name="crdroidandroid/android_external_faceunlock" path="external/faceunlock" remote="gitlab" revision="12.1" />
   <project name="crdroidandroid/android_packages_apps_FaceUnlockService" path="packages/apps/FaceUnlockService" revision="12.1" />
+  <!-- ProtonAOSP imports -->
+  <project name="ProtonAOSP/android_packages_apps_GmsCompat" path="packages/apps/GmsCompat" revision="sc-qpr3" remote="github" />
 </manifest>

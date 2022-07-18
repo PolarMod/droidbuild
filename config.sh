@@ -16,4 +16,5 @@ BASE_REPO_BRANCH="lineage-19.1"
 ENABLE_CCACHE=true
 # CCache size
 CCACHE_SIZE=50G
-
+# Do not remove manifests(recommended for debug in order to speed up builds
+NO_REMOVE_MANIFESTS=1

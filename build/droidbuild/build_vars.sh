@@ -15,4 +15,8 @@ TARGET_KEYS_TYPE="test-keys"
 export TARGET_USES_MICROG=0
 
 # Whether target support G-Visual
-export TARGET_SUPPORTS_GVISUAL=1
+# DEPRECATED
+export TARGET_SUPPORTS_GVISUAL=0
+
+# Whether target support GmsCompat
+export TARGET_SUPPORTS_GMSCOMPAT=0
