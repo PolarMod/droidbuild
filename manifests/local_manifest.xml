@@ -12,10 +12,11 @@
   <remove-project name="LineageOS/android_bionic" />  
   <remove-project name="LineageOS/android_build_soong" /> 
   <remove-project name="LineageOS/android_lineage-sdk" />
+  <remove-project name="platform/libcore" />
   <!-- PolarMod projects -->
   <project name="PolarMod/android_packages_apps_Settings" path="packages/apps/Settings" remote="github" revision="lineage-19.1" />
   <project name="PolarMod/android_bootable_recovery" path="bootable/recovery" remote="github" revision="lineage-19.1" />
-  <project name="PolarMod/android_frameworks_base" path="frameworks/base" remote="github" revision="lineage-19.1" />
+  <project name="PolarMod/android_frameworks_base" path="frameworks/base" remote="github" revision="magika" />
   <project name="PolarMod/android_vendor_polar" path="vendor/polar" remote="github" revision="magika" />
   <project name="PolarMod/android_external_hosts" path="external/hosts" remote="github" revision="magika" />
   <project name="PolarMod/android_packages_apps_PolarSettings" path="packages/apps/PolarSettings" remote="github" revision="magika" />
@@ -24,6 +25,8 @@
   <project name="PolarMod/android_packages_apps_Trebuchet" path="packages/apps/Trebuchet" remote="github" revision="lineage-19.1" />
   <project name="PolarMod/android_bionic" path="bionic" remote="github" revision="lineage-19.1" />
   <project name="PolarMod/android_lineage-sdk" path="lineage-sdk" remote="github" revision="lineage-19.1" />
+  <project name="PolarMod/android_packages_apps_GmsCompat" path="packages/apps/GmsCompat" revision="12.1" remote="github" />  
+  <project name="PolarMod/android_packages_apps_GameSpace" path="packages/apps/GameSpace" revision="12.1" remote="github" />
   <project path="build/soong" name="PolarMod/android_build_soong" groups="pdk,tradefed" >
     <linkfile src="root.bp" dest="Android.bp" />
     <linkfile src="bootstrap.bash" dest="bootstrap.bash" />
@@ -37,18 +40,15 @@
     <linkfile src="target" dest="build/target" />
     <linkfile src="tools" dest="build/tools" />
   </project>
+  <project path="libcore" name="PolarMod/android_libcore" remote="github" revision="magika" groups="pdk"/>
   <!-- LineageOS imports -->
   <project name="LineageOS/android_packages_apps_Email" path="packages/apps/Email" remote="github" revision="lineage-17.1" />
   <project name="LineageOS/android_packages_apps_UnifiedEmail" path="packages/apps/UnifiedEmail" remote="github" revision="lineage-17.1" />
   <!-- OmniJaws weather provider -->
   <project name="PolarMod/android_packages_services_OmniJaws" path="packages/services/OmniJaws" remote="github" revision="magika" />
   <!-- GrapheneOS imports -->
-  <project name="GrapheneOS/hardened_malloc" path="external/hardened_malloc" remote="github" revision="main" /> 
-  <!-- chaldeaprjkt imports -->
-  <project name="chaldeaprjkt/packages_apps_GameSpace" path="packages/apps/GameSpace" remote="github" revision="12.1" />
+  <project name="GrapheneOS/hardened_malloc" path="external/hardened_malloc" remote="github" revision="main" />
   <!-- crdroid imports -->
   <project name="crdroidandroid/android_external_faceunlock" path="external/faceunlock" remote="gitlab" revision="12.1" />
   <project name="crdroidandroid/android_packages_apps_FaceUnlockService" path="packages/apps/FaceUnlockService" revision="12.1" />
-  <!-- ProtonAOSP imports -->
-  <project name="ProtonAOSP/android_packages_apps_GmsCompat" path="packages/apps/GmsCompat" revision="sc-qpr3" remote="github" />
 </manifest>
