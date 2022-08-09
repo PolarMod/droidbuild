@@ -1,4 +1,4 @@
-FROM ubuntu:latest
+FROM ubuntu:focal
 
 # Install droidbuild
 RUN ln -sf /usr/share/zoneinfo/Europe/Kiev /etc/localtime
