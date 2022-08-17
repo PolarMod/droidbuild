@@ -26,7 +26,7 @@
   <project name="PolarMod/android_packages_apps_Trebuchet" path="packages/apps/Trebuchet" remote="github" revision="lineage-19.1" />
   <project name="PolarMod/android_bionic" path="bionic" remote="github" revision="lineage-19.1" />
   <project name="PolarMod/android_lineage-sdk" path="lineage-sdk" remote="github" revision="lineage-19.1" />
-  <project name="PolarMod/android_packages_modules_NetworkStack" remote="github" revisions="magika" path="packages/modules/NetworkStack" />
+  <project name="PolarMod/android_packages_modules_NetworkStack" remote="github" revision="magika" path="packages/modules/NetworkStack" />
   <project name="PolarMod/android_packages_apps_GmsCompat" path="packages/apps/GmsCompat" revision="12.1" remote="github" />  
   <project name="PolarMod/android_packages_apps_GameSpace" path="packages/apps/GameSpace" revision="12.1" remote="github" />
   <project path="build/soong" name="PolarMod/android_build_soong" groups="pdk,tradefed" >
