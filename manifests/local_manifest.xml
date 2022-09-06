@@ -12,6 +12,7 @@
   <remove-project name="LineageOS/android_bionic" />  
   <remove-project name="LineageOS/android_build_soong" /> 
   <remove-project name="LineageOS/android_lineage-sdk" />
+  <remove-project name="LineageOS/android_packages_apps_LineageParts" />
   <remove-project name="platform/libcore" />
   <remove-project name="platform/packages/modules/NetworkStack" />
   <!-- PolarMod projects -->
@@ -29,6 +30,7 @@
   <project name="PolarMod/android_packages_modules_NetworkStack" remote="github" revision="magika" path="packages/modules/NetworkStack" />
   <project name="PolarMod/android_packages_apps_GmsCompat" path="packages/apps/GmsCompat" revision="12.1" remote="github" />  
   <project name="PolarMod/android_packages_apps_GameSpace" path="packages/apps/GameSpace" revision="12.1" remote="github" />
+  <project name="PolarMod/android_packages_apps_LineageParts" path="packages/apps/LineageParts" revision="lineage-19.1" remote="github" />
   <project path="build/soong" name="PolarMod/android_build_soong" groups="pdk,tradefed" >
     <linkfile src="root.bp" dest="Android.bp" />
     <linkfile src="bootstrap.bash" dest="bootstrap.bash" />
@@ -53,6 +55,4 @@
   <!-- crdroid imports -->
   <project path="external/colorkt" name="crdroidandroid/android_external_colorkt" remote="github" revision="12.1"/>
   <project path="external/themelib" name="crdroidandroid/android_external_themelib" remote="github" revision="12.1" />
-  <project name="crdroidandroid/android_external_faceunlock" path="external/faceunlock" remote="gitlab" revision="12.1" />
-  <project name="crdroidandroid/android_packages_apps_FaceUnlockService" path="packages/apps/FaceUnlockService" revision="12.1" />
 </manifest>
