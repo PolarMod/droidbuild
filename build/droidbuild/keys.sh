@@ -28,7 +28,11 @@ open_keys(){
       require_command srm
       change_dir /tmp
       info "Opening encrypted key bundle"
-      exec "scrypt dec $BASEDIR/certbundle.zip.sc > certbundle.zip"
+      EXIT_CODE=1
+      while [[ $EXIT_CODE -eq 1 ]]; do
+        scrypt dec $BASEDIR/certbundle.zip.sc > certbundle.zip
+	EXIT_CODE=$?
+      done
       export KEYS_OPEN=1
       exec unzip certbundle.zip
       #exec srm -rf /root/.android-certs $BASEDIR/.android-certs
