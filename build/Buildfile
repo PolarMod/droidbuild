@@ -17,7 +17,9 @@ include_if_exists "$BASEDIR/config.sh"
 if ndef NO_REMOVE_MANIFESTS; then
     export NO_REMOVE_MANIFESTS=0
     info "Setting NO_REMOVE_MANIFSTS to 0 by default"
-else
+fi
+
+if [[ $NO_REMOVE_MANIFESTS -eq 0 ]]; then
     warn "You have setted NO_REMOVE_MANIFESTS to non-zero value."
     warn "This may lead to conflicts when building for multiple devices"
     warn "Avoid building for several devices without cleaning up manifests"
