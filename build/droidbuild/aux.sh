@@ -15,7 +15,7 @@ print_info(){
 # $1 -- pattern to match
 # $2 -- directory to search
 get_latest_file(){
-   echo `find -name $1 $2 | tail -n 1`
+   echo `find $2 -name $1 -print0 | xargs -r -0 ls -1 -t | head -1`
 }
 
 # $1 -- pattern to search
