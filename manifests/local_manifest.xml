@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <manifest>
-  <!-- Remotes -->	
+  <!-- Remotes -->
   <remote name="gitlab" fetch="https://gitlab.com/" />
   <!-- Remove overriden projects -->
   <remove-project name="LineageOS/android_frameworks_base" />
@@ -13,7 +13,7 @@
   <remove-project name="LineageOS/android_build_soong" /> 
   <remove-project name="LineageOS/android_lineage-sdk" />
   <remove-project name="LineageOS/android_packages_apps_LineageParts" />
-  <remove-project name="platform/libcore" />
+  <remove-project name="LineageOS/android_libcore" />
   <!--<remove-project name="platform/packages/modules/NetworkStack" /> -->
   <!-- PolarMod projects -->
   <project name="PolarMod/android_packages_apps_Settings" path="packages/apps/Settings" remote="github" revision="lineage-19.1" />
@@ -44,7 +44,7 @@
     <linkfile src="target" dest="build/target" />
     <linkfile src="tools" dest="build/tools" />
   </project>
-  <project path="libcore" name="PolarMod/android_libcore" remote="github" revision="magika" groups="pdk"/>
+  <project path="libcore" name="PolarMod/android_libcore" remote="github" revision="lineage-19.1" groups="pdk"/>
   <!-- LineageOS imports -->
   <project name="LineageOS/android_packages_apps_Email" path="packages/apps/Email" remote="github" revision="lineage-17.1" />
   <project name="LineageOS/android_packages_apps_UnifiedEmail" path="packages/apps/UnifiedEmail" remote="github" revision="lineage-17.1" />
@@ -56,3 +56,4 @@
   <project path="external/colorkt" name="crdroidandroid/android_external_colorkt" remote="github" revision="12.1"/>
   <project path="external/themelib" name="crdroidandroid/android_external_themelib" remote="github" revision="12.1" />
 </manifest>
+
