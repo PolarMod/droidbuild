@@ -1,25 +1,28 @@
+# Banner
+include "droidbuild/banner.sh"
 # Droidbuild variables
 BUILD_OUT_DIR="$BASEDIR/out_dir/"
 DROIDDIR=$(pwd)
 DROID_TARGETS=()
 
 # Update $PATH
-export PATH="$PATH:/root/bin/:$BASEDIR/build/make/tools/bin/"
+export PATH="$PATH:/opt/droid/bin/:$BASEDIR/build/make/tools/bin/"
 
 version_codename="magika"
 
 include "droidbuild/target.sh"
 include "droidbuild/keys.sh"
 include "droidbuild/generic.sh"
+include "droidbuild/hooks.sh"
 
-include_if_exists "$BASEDIR/config.sh"
+include "/opt/droid/config/config.sh"
 
 if ndef NO_REMOVE_MANIFESTS; then
     export NO_REMOVE_MANIFESTS=0
     info "Setting NO_REMOVE_MANIFSTS to 0 by default"
 fi
 
-if [[ $NO_REMOVE_MANIFESTS -eq 0 ]]; then
+if [[ $NO_REMOVE_MANIFESTS -ne 0 ]]; then
     warn "You have setted NO_REMOVE_MANIFESTS to non-zero value."
     warn "This may lead to conflicts when building for multiple devices"
     warn "Avoid building for several devices without cleaning up manifests"
@@ -28,9 +31,6 @@ fi
 target_sync-initial(){
    exec git config --global user.email "$GIT_EMAIL"
    exec git config --global user.name "$GIT_USERNAME"
-   exec "mkdir -p $BASEDIR/.repo/local_manifests/"
-   exec "cp /root/manifests/*.xml .repo/local_manifests/"
-   exec "cp /root/manifests/private/* .repo/local_manifests/"
    if ndef CONFIG_NPROC; then
      warn "Setting number of threads automatically"
      CONFIG_NPROC=`nproc`
@@ -191,7 +191,6 @@ droidbuild(){
     DROIDBUILD_MODULES=()  
     # Include droid build files
     glob_files "**/Droidbuild.sh" $BASEDIR files
-    info $files
     for file in ${files[@]}; do
         TARGET_NAME="$1"
         LOCAL_PATH="$(dirname $file)"
