@@ -24,7 +24,6 @@ get_latest_file(){
 # $2 -- dir name
 # $3 -- ressulting array name
 glob_files(){
-   # FIXME: Use $2	
    info "glob $2/$1"
    mapfile -d $'\0' $3 < <(find $2 -wholename "$1" -print0)
 }

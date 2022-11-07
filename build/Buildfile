@@ -1,7 +1,8 @@
+# Meta
+version="1.2-rc3-magika"
 # Banner
 include "droidbuild/banner.sh"
 # Droidbuild variables
-BUILD_OUT_DIR="$BASEDIR/out_dir/"
 DROIDDIR=$(pwd)
 DROID_TARGETS=()
 
@@ -14,8 +15,9 @@ include "droidbuild/target.sh"
 include "droidbuild/keys.sh"
 include "droidbuild/generic.sh"
 include "droidbuild/hooks.sh"
+include "droidbuild/meta.sh"
 
-include "/opt/droid/config/config.sh"
+include "$DROIDBUILD_CONFIGDIR/config.sh"
 
 if ndef NO_REMOVE_MANIFESTS; then
     export NO_REMOVE_MANIFESTS=0
@@ -45,13 +47,16 @@ target_sync-initial(){
      error "Aborting sync"
      exit -1
    fi
+   info "Updating manifests"
+   exec "cp -r $DROIDPAK_DIR/.repo/local_manifests/* $DROIDDIR/.repo/local_manifests/"
+   success "Successfully updated manifests"
    exec "repo init --depth=1 -u $BASE_REPO -b $BASE_REPO_BRANCH"
    exec "repo sync --current-branch --force-sync --no-clone-bundle --no-tags --optimized-fetch --prune -j $CONFIG_NPROC" 
    success "Sync successful"
 }
 
 target_env(){
-  export out_dir=$BUILD_OUT_DIR
+  export out_dir=$DROIDBUILD_OUT_DIR
   require_directory $out_dir
   datetime=`date '+%Y%m%d_%H%M%S'`
   export signature="${TARGET_CODENAME}-${datetime}-${TARGET_BUILDTYPE}"

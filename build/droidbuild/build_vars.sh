@@ -10,13 +10,5 @@ TARGET_ARCH_BITNESS=64
 TARGET_SIGNED_BUILD=false
 TARGET_KEYS_TYPE="test-keys"
 
-# microG target should be available in make, so
-# we need to export it.
-export TARGET_USES_MICROG=0
-
-# Whether target support G-Visual
-# DEPRECATED
-export TARGET_SUPPORTS_GVISUAL=0
-
 # Whether target support GmsCompat
 export TARGET_SUPPORTS_GMSCOMPAT=0

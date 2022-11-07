@@ -57,5 +57,5 @@ COPY build/Buildfile Buildfile
 RUN cp -r /opt/droid/buildroot /opt/droid/droidpak
 
 # Set the entrypoint
-WORKDIR /opt/droid
+WORKDIR /opt/droid/buildroot/
 ENTRYPOINT /bin/bash /opt/droid/docker-entrypoint.sh

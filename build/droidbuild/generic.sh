@@ -26,7 +26,7 @@ target_ccache(){
         exec "$CCACHE_EXEC -M $CCACHE_SIZE"
     fi
   else
-    warn "Can not determin CCache status, because ENABLE_CCACHE is not defined, defaulting to false"
+    warn "Can not determine CCache status, because ENABLE_CCACHE is not defined, defaulting to false"
   fi
   export CCACHE_FLAG=true
 }

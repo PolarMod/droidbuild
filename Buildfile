@@ -30,7 +30,7 @@ target_container(){
 
 target_container-unpack(){
    target_container
-   exec docker run -v "'$STORAGE_DIR:/opt/droid/buildroot'" \ 
+   exec docker run -v "'$STORAGE_DIR:/opt/droid/buildroot'" \
                    -v "'$BASEDIR/config.sh:/opt/droid/config/config.sh'" \
                    -v "'$PREV_BUILD_DIR:/opt/droid/buildroot/out_dir'" \
                    --entrypoint /opt/droid/docker-unpack.sh -it droidbuild
