@@ -1,3 +1,5 @@
+include "droidbuild/meta.sh"
+
 target_generate-keys(){
     info "This target should be called only ONCE at FIRST build"
     require_command zip
@@ -30,7 +32,7 @@ open_keys(){
       info "Opening encrypted key bundle"
       EXIT_CODE=1
       while [[ $EXIT_CODE -eq 1 ]]; do
-        scrypt dec $BASEDIR/certbundle.zip.sc > certbundle.zip
+        scrypt dec $CERTBUNDLE_PATH > certbundle.zip
 	EXIT_CODE=$?
       done
       export KEYS_OPEN=1
