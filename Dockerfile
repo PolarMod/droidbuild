@@ -26,8 +26,9 @@ RUN mkdir -p droid/.repo/local_manifests
 WORKDIR /opt/droid/buildroot
 COPY build/droidbuild droidbuild
 COPY manifests/* .repo/local_manifests/
-COPY build/docker/docker-entrypoint.sh /opt/droid/docker-entrypoint.sh
-COPY build/docker/docker-unpack.sh /opt/droid/docker-unpack.sh
+# Add container maintaince scripts
+COPY scripts/docker/docker-entrypoint.sh /opt/droid/docker-entrypoint.sh
+COPY scripts/docker/docker-unpack.sh /opt/droid/docker-unpack.sh
 RUN chmod 755 /opt/droid/docker-entrypoint.sh
 RUN chmod 755 /opt/droid/docker-unpack.sh
 
