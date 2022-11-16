@@ -78,7 +78,7 @@ target_droidbuild(){
       info "Post-running module $LOCAL_PATH"
       include $LOCAL_PATH/Droidbuild.sh
       droidbuild_postrun
-      undef_fn droidbuild_postrun
+      sundef_fn droidbuild_postrun
   done
 }
 
