@@ -2,7 +2,4 @@
 <manifest>
 	<project name="PolarMod/droidbuild_device_z3tc" path="droidbuild/device/z3tc" remote="github" revision="opressor" />
 	<project name="PolarMod/droidbuild_device_twolip" path="droidbuild/device/twolip" remote="github" revision="opressor" />
-	<project name="PolarMod/droidbuild_device_gta4xlwifi" path="droidbuild/device/gta4xlwifi" remote="github" revision="opressor" />
-    <project name="PolarMod/droidbuild_device_hotdogg" path="droidbuild/device/hotdogg" remote="github" revision="opressor" />
-    <project name="PolarMod/droidbuild_device_emulators" path="droidbuild/device/emulators" remote="github" revision="opressor" />
 </manifest>
