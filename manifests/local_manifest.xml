@@ -14,7 +14,7 @@
   <remove-project name="LineageOS/android_lineage-sdk" />
   <remove-project name="LineageOS/android_packages_apps_LineageParts" />
   <remove-project name="LineageOS/android_libcore" />
-  <!--<remove-project name="platform/packages/modules/NetworkStack" /> -->
+  <remove-project name="platform/packages/modules/NetworkStack" /> 
   <!-- PolarMod projects -->
   <project name="PolarMod/android_packages_apps_Settings" path="packages/apps/Settings" remote="github" revision="lineage-19.1" />
   <project name="PolarMod/android_bootable_recovery" path="bootable/recovery" remote="github" revision="lineage-19.1" />
@@ -27,7 +27,7 @@
   <project name="PolarMod/android_packages_apps_Trebuchet" path="packages/apps/Trebuchet" remote="github" revision="lineage-19.1" />
   <project name="PolarMod/android_bionic" path="bionic" remote="github" revision="lineage-19.1" />
   <project name="PolarMod/android_lineage-sdk" path="lineage-sdk" remote="github" revision="lineage-19.1" />
-  <!--<project name="PolarMod/android_packages_modules_NetworkStack" remote="github" revision="magika" path="packages/modules/NetworkStack" />-->
+  <project name="PolarMod/android_packages_modules_NetworkStack" remote="github" revision="magika" path="packages/modules/NetworkStack" />
   <project name="PolarMod/android_packages_apps_GmsCompat" path="packages/apps/GmsCompat" revision="12.1" remote="github" />  
   <project name="PolarMod/android_packages_apps_GameSpace" path="packages/apps/GameSpace" revision="12.1" remote="github" />
   <project name="PolarMod/android_packages_apps_LineageParts" path="packages/apps/LineageParts" revision="lineage-19.1" remote="github" />
