@@ -44,14 +44,13 @@
     <linkfile src="target" dest="build/target" />
     <linkfile src="tools" dest="build/tools" />
   </project>
-  <project path="libcore" name="PolarMod/android_libcore" remote="github" revision="lineage-19.1" groups="pdk"/>
+  <project path="libcore" name="PolarMod/android_libcore" remote="github" revision="lineage-19.1" groups="pdk"/> 
+  <project name="PolarMod/hardened_malloc" path="external/hardened_malloc" remote="github" revision="12.1" />
   <!-- LineageOS imports -->
   <project name="LineageOS/android_packages_apps_Email" path="packages/apps/Email" remote="github" revision="lineage-17.1" />
   <project name="LineageOS/android_packages_apps_UnifiedEmail" path="packages/apps/UnifiedEmail" remote="github" revision="lineage-17.1" />
   <!-- OmniJaws weather provider -->
   <project name="PolarMod/android_packages_services_OmniJaws" path="packages/services/OmniJaws" remote="github" revision="magika" />
-  <!-- GrapheneOS imports -->
-  <project name="GrapheneOS/hardened_malloc" path="external/hardened_malloc" remote="github" revision="12.1" />
   <!-- crdroid imports -->
   <project path="external/colorkt" name="crdroidandroid/android_external_colorkt" remote="github" revision="12.1"/>
   <project path="external/themelib" name="crdroidandroid/android_external_themelib" remote="github" revision="12.1" />
