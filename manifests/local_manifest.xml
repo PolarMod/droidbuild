@@ -45,7 +45,7 @@
     <linkfile src="tools" dest="build/tools" />
   </project>
   <project path="libcore" name="PolarMod/android_libcore" remote="github" revision="lineage-19.1" groups="pdk"/> 
-  <project name="PolarMod/hardened_malloc" path="external/hardened_malloc" remote="github" revision="12.1" />
+  <project name="PolarMod/android_external_hardened_malloc" path="external/hardened_malloc" remote="github" revision="12.1" />
   <!-- LineageOS imports -->
   <project name="LineageOS/android_packages_apps_Email" path="packages/apps/Email" remote="github" revision="lineage-17.1" />
   <project name="LineageOS/android_packages_apps_UnifiedEmail" path="packages/apps/UnifiedEmail" remote="github" revision="lineage-17.1" />
