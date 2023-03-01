@@ -6,36 +6,26 @@
   <remove-project name="LineageOS/android_frameworks_base" />
   <remove-project name="LineageOS/android_packages_apps_Settings"/>
   <remove-project name="LineageOS/android_bootable_recovery" />
-  <remove-project name="LineageOS/android_packages_apps_SetupWizard" />
   <remove-project name="LineageOS/android_build" />
-  <remove-project name="LineageOS/android_packages_apps_Trebuchet" />
   <remove-project name="LineageOS/android_bionic" />  
   <remove-project name="LineageOS/android_build_soong" /> 
-  <remove-project name="LineageOS/android_lineage-sdk" />
-  <remove-project name="LineageOS/android_packages_apps_LineageParts" />
   <remove-project name="LineageOS/android_libcore" />
-  <remove-project name="platform/packages/modules/NetworkStack" /> 
   <!-- PolarMod projects -->
-  <project name="PolarMod/android_packages_apps_Settings" path="packages/apps/Settings" remote="github" revision="lineage-19.1" />
-  <project name="PolarMod/android_bootable_recovery" path="bootable/recovery" remote="github" revision="lineage-19.1" />
-  <project name="PolarMod/android_frameworks_base" path="frameworks/base" remote="github" revision="magika" />
-  <project name="PolarMod/android_vendor_polar" path="vendor/polar" remote="github" revision="magika" />
-  <project name="PolarMod/android_external_hosts" path="external/hosts" remote="github" revision="magika" />
-  <project name="PolarMod/android_packages_apps_PolarSettings" path="packages/apps/PolarSettings" remote="github" revision="magika" />
-  <project name="PolarMod/droidbuild_bootloader_lock-support" path="droidbuild/bootloader/lock-support" remote="github" revision="magika" />
-  <project name="PolarMod/android_packages_apps_SetupWizard" path="packages/apps/SetupWizard" remote="github" revision="lineage-19.1" />
-  <project name="PolarMod/android_packages_apps_Trebuchet" path="packages/apps/Trebuchet" remote="github" revision="lineage-19.1" />
-  <project name="PolarMod/android_bionic" path="bionic" remote="github" revision="lineage-19.1" />
-  <project name="PolarMod/android_lineage-sdk" path="lineage-sdk" remote="github" revision="lineage-19.1" />
-  <project name="PolarMod/android_packages_modules_NetworkStack" remote="github" revision="magika" path="packages/modules/NetworkStack" />
-  <project name="PolarMod/android_packages_apps_GmsCompat" path="packages/apps/GmsCompat" revision="12.1" remote="github" />  
-  <project name="PolarMod/android_packages_apps_GameSpace" path="packages/apps/GameSpace" revision="12.1" remote="github" />
-  <project name="PolarMod/android_packages_apps_LineageParts" path="packages/apps/LineageParts" revision="lineage-19.1" remote="github" />
-  <project path="build/soong" name="PolarMod/android_build_soong" groups="pdk,tradefed" >
+  <project name="PolarMod/android_packages_apps_Settings" path="packages/apps/Settings" remote="github" revision="thunderpluck" />
+  <project name="PolarMod/android_bootable_recovery" path="bootable/recovery" remote="github" revision="thunderpluck" />
+  <project name="PolarMod/android_frameworks_base" path="frameworks/base" remote="github" revision="thunderpluck" />
+  <project name="PolarMod/android_vendor_polar" path="vendor/polar" remote="github" revision="thunderpluck" />
+  <project name="PolarMod/android_external_hosts" path="external/hosts" remote="github" revision="thunderpluck" />
+  <project name="PolarMod/android_packages_apps_PolarSettings" path="packages/apps/PolarSettings" remote="github" revision="thunderpluck" />
+  <project name="PolarMod/droidbuild_bootloader_lock-support" path="droidbuild/bootloader/lock-support" remote="github" revision="thunderpluck" />
+  <project name="PolarMod/android_bionic" path="bionic" remote="github" revision="thunderpluck" />
+  <project name="PolarMod/android_packages_apps_GmsCompat" path="packages/apps/GmsCompat" revision="thunderpluck" remote="github" />  
+  <project name="PolarMod/android_packages_apps_GameSpace" path="packages/apps/GameSpace" revision="thunderpluck" remote="github" />
+  <project path="build/soong" name="PolarMod/android_build_soong" groups="pdk,tradefed" revision="thunderpluck" >
     <linkfile src="root.bp" dest="Android.bp" />
     <linkfile src="bootstrap.bash" dest="bootstrap.bash" />
   </project>
-  <project path="build/make" name="PolarMod/android_build" revsion="lineage-19.1">
+  <project path="build/make" name="PolarMod/android_build" revsion="thunderpluck">
     <copyfile src="core/root.mk" dest="Makefile" />
     <linkfile src="CleanSpec.mk" dest="build/CleanSpec.mk" />
     <linkfile src="buildspec.mk.default" dest="build/buildspec.mk.default" />
@@ -44,15 +34,15 @@
     <linkfile src="target" dest="build/target" />
     <linkfile src="tools" dest="build/tools" />
   </project>
-  <project path="libcore" name="PolarMod/android_libcore" remote="github" revision="lineage-19.1" groups="pdk"/> 
-  <project name="PolarMod/hardened_malloc" path="external/hardened_malloc" remote="github" revision="12.1" />
+  <project path="libcore" name="PolarMod/android_libcore" remote="github" revision="thunderpluck" groups="pdk"/> 
+  <project name="PolarMod/hardened_malloc" path="external/hardened_malloc" remote="github" revision="thunderpluck" />
   <!-- LineageOS imports -->
   <project name="LineageOS/android_packages_apps_Email" path="packages/apps/Email" remote="github" revision="lineage-17.1" />
   <project name="LineageOS/android_packages_apps_UnifiedEmail" path="packages/apps/UnifiedEmail" remote="github" revision="lineage-17.1" />
   <!-- OmniJaws weather provider -->
-  <project name="PolarMod/android_packages_services_OmniJaws" path="packages/services/OmniJaws" remote="github" revision="magika" />
+  <project name="PolarMod/android_packages_services_OmniJaws" path="packages/services/OmniJaws" remote="github" revision="thunderpluck" />
   <!-- crdroid imports -->
-  <project path="external/colorkt" name="crdroidandroid/android_external_colorkt" remote="github" revision="12.1"/>
-  <project path="external/themelib" name="crdroidandroid/android_external_themelib" remote="github" revision="12.1" />
+  <project path="external/colorkt" name="crdroidandroid/android_external_colorkt" remote="github" revision="13.0"/>
+  <project path="external/themelib" name="crdroidandroid/android_external_themelib" remote="github" revision="13.0" />
 </manifest>
 

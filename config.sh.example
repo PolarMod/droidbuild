@@ -11,7 +11,7 @@ PREV_BUILD_DIR="/opt/droid/out-dir"
 # Our ROM base repo(LineageOS, but may be different)
 BASE_REPO="https://github.com/LineageOS/android.git"
 # Base repo barnch
-BASE_REPO_BRANCH="lineage-19.1"
+BASE_REPO_BRANCH="lineage-20.0"
 # CCache
 ENABLE_CCACHE=true
 # CCache size
