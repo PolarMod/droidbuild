@@ -1,7 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <manifest>
-  <project name="PolarMod/droidbuild_device_hotdogb" path="droidbuild/device/hotdogb" remote="github" revision="magika" />
-  <project name="PolarMod/droidbuild_device_gta4xlwifi" path="droidbuild/device/gta4xlwifi" remote="github" revision="magika" />
-  <project name="PolarMod/droidbuild_device_hotdogg" path="droidbuild/device/hotdogg" remote="github" revision="magika" /> 
-	<!--<project name="PolarMod/droidbuild_device_emulators" path="droidbuild/device/emulators" remote="github" revision="magika" />-->
+  <project name="PolarMod/droidbuild_device_twolip" path="droidbuild/device/twolip" remote="github" revision="magika" />
 </manifest>
