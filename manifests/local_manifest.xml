@@ -7,9 +7,7 @@
   <remove-project name="LineageOS/android_packages_apps_Settings"/>
   <remove-project name="LineageOS/android_bootable_recovery" />
   <remove-project name="LineageOS/android_build" />
-  <remove-project name="LineageOS/android_bionic" />  
   <remove-project name="LineageOS/android_build_soong" /> 
-  <remove-project name="LineageOS/android_libcore" />
   <!-- PolarMod projects -->
   <project name="PolarMod/android_packages_apps_Settings" path="packages/apps/Settings" remote="github" revision="thunderpluck" />
   <project name="PolarMod/android_bootable_recovery" path="bootable/recovery" remote="github" revision="thunderpluck" />
@@ -18,7 +16,6 @@
   <project name="PolarMod/android_external_hosts" path="external/hosts" remote="github" revision="thunderpluck" />
   <project name="PolarMod/android_packages_apps_PolarSettings" path="packages/apps/PolarSettings" remote="github" revision="thunderpluck" />
   <project name="PolarMod/droidbuild_bootloader_lock-support" path="droidbuild/bootloader/lock-support" remote="github" revision="thunderpluck" />
-  <project name="PolarMod/android_bionic" path="bionic" remote="github" revision="thunderpluck" />
   <project path="build/soong" name="PolarMod/android_build_soong" groups="pdk,tradefed" revision="thunderpluck" >
     <linkfile src="root.bp" dest="Android.bp" />
     <linkfile src="bootstrap.bash" dest="bootstrap.bash" />
