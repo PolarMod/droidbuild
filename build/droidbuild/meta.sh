@@ -1,4 +1,4 @@
-DROIDBUILD_VERSION="1.2-magika-rc3"
+DROIDBUILD_VERSION="1.3-thunderpluck-rc3"
 # In-container config
 DROIDBUILD_CONFIGDIR="/opt/droid/config/"
 DROIDBUILD_OUT_DIR="$BASEDIR/out_dir"

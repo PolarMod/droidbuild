@@ -1,5 +1,5 @@
 # Meta
-version="1.3-rc3-thunderpluck"
+version="1.3-thunderpluck-rc3"
 # Banner
 include "droidbuild/banner.sh"
 # Droidbuild variables
@@ -9,7 +9,7 @@ DROID_TARGETS=()
 # Update $PATH
 export PATH="$PATH:/opt/droid/bin/:$BASEDIR/build/make/tools/bin/"
 
-version_codename="magika"
+version_codename="thunderpluck"
 
 include "droidbuild/target.sh"
 include "droidbuild/keys.sh"
