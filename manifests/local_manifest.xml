@@ -29,8 +29,5 @@
     <linkfile src="tools" dest="build/tools" />
   </project>
   <project name="PolarMod/android_packages_services_OmniJaws" path="packages/services/OmniJaws" remote="github" revision="thunderpluck" />
-  <!-- LineageOS imports -->
-  <project name="LineageOS/android_packages_apps_Email" path="packages/apps/Email" remote="github" revision="lineage-17.1" />
-  <project name="LineageOS/android_packages_apps_UnifiedEmail" path="packages/apps/UnifiedEmail" remote="github" revision="lineage-17.1" />
 </manifest>
 
