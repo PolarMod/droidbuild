@@ -8,6 +8,7 @@
   <remove-project name="LineageOS/android_bootable_recovery" />
   <remove-project name="LineageOS/android_build" />
   <remove-project name="LineageOS/android_build_soong" /> 
+  <remove-project name="LineageOS/android_bionic" />
   <!-- PolarMod projects -->
   <project name="PolarMod/android_packages_apps_Settings" path="packages/apps/Settings" remote="github" revision="thunderpluck" />
   <project name="PolarMod/android_bootable_recovery" path="bootable/recovery" remote="github" revision="thunderpluck" />
@@ -29,5 +30,7 @@
     <linkfile src="tools" dest="build/tools" />
   </project>
   <project name="PolarMod/android_packages_services_OmniJaws" path="packages/services/OmniJaws" remote="github" revision="thunderpluck" />
+  <project name="PolarMod/android_bionic" path="bionic" remote="github" revision="thunderpluck" />
+  <project name="PolarMod/android_packages_apps_GmsCompat" remote="github" revision="thunderpluck" />
 </manifest>
 
