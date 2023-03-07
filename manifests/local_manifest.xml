@@ -31,6 +31,7 @@
   </project>
   <project name="PolarMod/android_packages_services_OmniJaws" path="packages/services/OmniJaws" remote="github" revision="thunderpluck" />
   <project name="PolarMod/android_bionic" path="bionic" remote="github" revision="thunderpluck" />
-  <project name="PolarMod/android_packages_apps_GmsCompat" remote="github" revision="thunderpluck" />
+  <project name="PolarMod/android_packages_apps_GmsCompat" path="packages/apps/GmsCompat" remote="github" revision="thunderpluck" />
+  <project name="PolarMod/android_external_GmsCompatConfig" path="external/GmsCompatConfig" remote="github" revision="thunderpluck" />
 </manifest>
 
