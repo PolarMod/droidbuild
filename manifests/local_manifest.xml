@@ -35,5 +35,6 @@
   <project name="PolarMod/android_packages_apps_GmsCompat" path="packages/apps/GmsCompat" remote="github" revision="thunderpluck" />
   <project name="PolarMod/android_external_GmsCompatConfig" path="external/GmsCompatConfig" remote="github" revision="thunderpluck" />
   <project name="PolarMod/android_libcore" path="libcore" remote="github" revision="thunderpluck" />
+  <project name="PolarMod/android_external_hardened_malloc" remote="github" revision="thunderpluck" />
 </manifest>
 
