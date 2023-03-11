@@ -10,10 +10,10 @@ target_generate-keys(){
     mkdir -p android-certs
     exec rm -rf certbundle.zip certbundle.zip.sc
     info "Keys subject: $CERT_SUBJECT"
-    for x in releasekey platform shared media networkstack testkey; do \
+    for x in releasekey platform shared media networkstack testkey sdk_sandbox bluetooth; do \
     ./development/tools/make_key android-certs/$x "$CERT_SUBJECT"; \
     done
-    for x in releasekey platform shared media networkstack testkey; do
+    for x in releasekey platform shared media networkstack testkey sdk_sandbox bluetooth; do
         exec "openssl rsa -inform DER -in android-certs/$x.pk8 -out android-certs/$x.key"
     done
     info "Generating encrypted keys bundle"
