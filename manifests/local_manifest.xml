@@ -10,6 +10,7 @@
   <remove-project name="LineageOS/android_build_soong" /> 
   <remove-project name="LineageOS/android_bionic" />
   <remove-project name="LineageOS/android_libcore" />
+  <remove-project name="LineageOS/android_packages_modules_Permission" />
   <!-- PolarMod projects -->
   <project name="PolarMod/android_packages_apps_Settings" path="packages/apps/Settings" remote="github" revision="thunderpluck" />
   <project name="PolarMod/android_bootable_recovery" path="bootable/recovery" remote="github" revision="thunderpluck" />
@@ -36,5 +37,6 @@
   <project name="PolarMod/android_external_GmsCompatConfig" path="external/GmsCompatConfig" remote="github" revision="thunderpluck" />
   <project name="PolarMod/android_libcore" path="libcore" remote="github" revision="thunderpluck" />
   <project name="PolarMod/android_external_hardened_malloc" remote="github" revision="thunderpluck" />
+  <project name="PolarMod/android_packages_modules_Permission" remote="github" path="packages/modules/Permission" revision="thunderpluck" />
 </manifest>
 
