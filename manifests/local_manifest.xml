@@ -40,5 +40,6 @@
   <project name="PolarMod/android_external_hardened_malloc" remote="github" revision="thunderpluck" />
   <project name="PolarMod/android_packages_modules_Permission" remote="github" path="packages/modules/Permission" revision="thunderpluck" />
   <project name="PolarMod/android_packages_apps_SetupWizard" remote="github" path="packages/apps/SetupWizard" revision="thunderpluck" />
+  <project name="PolarMod/android_packages_apps_GameSpace" remote="github" path="packages/apps/GameSpace" revision="thunderpluck" />
 </manifest>
 
