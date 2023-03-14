@@ -50,7 +50,7 @@ target_sync-initial(){
    info "Updating manifests"
    exec "cp -r $DROIDPAK_DIR/.repo/local_manifests/* $DROIDDIR/.repo/local_manifests/"
    success "Successfully updated manifests"
-   exec "repo init --depth=1 -u $BASE_REPO -b $BASE_REPO_BRANCH"
+   exec "repo init --depth=1 -u $BASE_REPO -b $BASE_REPO_BRANCH --git-lfs"
    exec "repo sync --current-branch --force-sync --no-clone-bundle --no-tags --optimized-fetch --prune -j $CONFIG_NPROC" 
    success "Sync successful"
 }
