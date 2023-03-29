@@ -8,6 +8,9 @@ RUN apt-get install -y git-core gnupg flex bison gperf build-essential zip curl 
 RUN apt-get install -y openjdk-8-jdk 
 RUN apt-get update -y
 RUN apt-get install -y wget ccache libncurses5 bc xxd cgpt git-core gnupg flex libssl-dev bison gperf libsdl1.2-dev squashfs-tools rsync build-essential zip curl kmod libncurses5-dev zlib1g-dev openjdk-8-jre openjdk-8-jdk pngcrush schedtool libxml2 libxml2-utils xsltproc lzop libc6-dev schedtool g++-multilib lib32z1-dev lib32ncurses5-dev lib32readline-dev gcc-multilib maven tmux screen w3m ncftp
+## Install git-lfs
+RUN curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.deb.sh | bash
+RUN apt-get install -y git-lfs
 
 # Prepare directory structure
 WORKDIR /root
