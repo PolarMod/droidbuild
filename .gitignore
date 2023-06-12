@@ -3,3 +3,5 @@ out
 config.sh
 cerbundle.zip.sc
 manifests/private/*
+.idea
+*.iml
