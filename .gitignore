@@ -1,5 +1,6 @@
 android-certs
 out
 config.sh
+config-*.sh
 cerbundle.zip.sc
 manifests/private/*
