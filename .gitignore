@@ -4,3 +4,4 @@ config.sh
 config-*.sh
 cerbundle.zip.sc
 manifests/private/*
+.idea 
