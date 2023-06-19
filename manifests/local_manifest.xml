@@ -33,7 +33,7 @@
              revision="thunderpluck"/>
     <project name="PolarMod/android_packages_apps_SetupWizard" remote="github" path="packages/apps/SetupWizard"
              revision="thunderpluck"/>
-    <project name="PolarMod/android_package_apps_LineageParts" remote="github" path="packages/apps/LineageParts"/>
+    <project name="PolarMod/android_packages_apps_LineageParts" remote="github" path="packages/apps/LineageParts"/>
     <!-- LineageOS build system override -->
     <project path="build/soong" name="PolarMod/android_build_soong" groups="pdk,tradefed" revision="thunderpluck">
         <linkfile src="root.bp" dest="Android.bp"/>
