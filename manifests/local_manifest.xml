@@ -13,7 +13,9 @@
     <remove-project name="LineageOS/android_packages_modules_Permission"/>
     <remove-project name="LineageOS/android_packages_apps_SetupWizard"/>
     <remove-project name="LineageOS/android_lineage-sdk"/>
+    <remove-project name="LineageOS/android_packages_apps_LineageParts" />
     <!-- PolarMod projects -->
+    <!-- LineageOS overrides -->
     <project name="PolarMod/android_packages_apps_Settings" path="packages/apps/Settings" remote="github"
              revision="thunderpluck"/>
     <project name="PolarMod/android_bootable_recovery" path="bootable/recovery" remote="github"
@@ -26,6 +28,13 @@
     <project name="PolarMod/droidbuild_bootloader_lock-support" path="droidbuild/bootloader/lock-support"
              remote="github" revision="thunderpluck"/>
     <project name="PolarMod/android_lineage-sdk" path="lineage-sdk" remote="github" revision="thunderpluck" />
+    <project name="PolarMod/android_bionic" path="bionic" remote="github" revision="thunderpluck"/>
+    <project name="PolarMod/android_packages_modules_Permission" remote="github" path="packages/modules/Permission"
+             revision="thunderpluck"/>
+    <project name="PolarMod/android_packages_apps_SetupWizard" remote="github" path="packages/apps/SetupWizard"
+             revision="thunderpluck"/>
+    <project name="PolarMod/android_package_apps_LineageParts" remote="github" path="packages/apps/LineageParts"/>
+    <!-- LineageOS build system override -->
     <project path="build/soong" name="PolarMod/android_build_soong" groups="pdk,tradefed" revision="thunderpluck">
         <linkfile src="root.bp" dest="Android.bp"/>
         <linkfile src="bootstrap.bash" dest="bootstrap.bash"/>
@@ -38,19 +47,15 @@
         <linkfile src="target" dest="build/target"/>
         <linkfile src="tools" dest="build/tools"/>
     </project>
+    <!-- Addons -->
     <project name="PolarMod/android_packages_services_OmniJaws" path="packages/services/OmniJaws" remote="github"
              revision="thunderpluck"/>
-    <project name="PolarMod/android_bionic" path="bionic" remote="github" revision="thunderpluck"/>
     <project name="PolarMod/android_packages_apps_GmsCompat" path="packages/apps/GmsCompat" remote="github"
              revision="thunderpluck"/>
     <project name="PolarMod/android_external_GmsCompatConfig" path="external/GmsCompatConfig" remote="github"
              revision="thunderpluck"/>
     <project name="PolarMod/android_libcore" path="libcore" remote="github" revision="thunderpluck"/>
     <project name="PolarMod/android_external_hardened_malloc" remote="github" revision="thunderpluck"/>
-    <project name="PolarMod/android_packages_modules_Permission" remote="github" path="packages/modules/Permission"
-             revision="thunderpluck"/>
-    <project name="PolarMod/android_packages_apps_SetupWizard" remote="github" path="packages/apps/SetupWizard"
-             revision="thunderpluck"/>
     <project name="PolarMod/android_packages_apps_GameSpace" remote="github" path="packages/apps/GameSpace"
              revision="thunderpluck"/>
 </manifest>
