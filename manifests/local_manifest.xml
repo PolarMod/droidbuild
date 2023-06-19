@@ -13,7 +13,7 @@
     <remove-project name="LineageOS/android_packages_modules_Permission"/>
     <remove-project name="LineageOS/android_packages_apps_SetupWizard"/>
     <remove-project name="LineageOS/android_lineage-sdk"/>
-    <remove-project name="LineageOS/android_packages_apps_LineageParts" />
+    <remove-project name="LineageOS/android_packages_apps_LineageParts"/>
     <!-- PolarMod projects -->
     <!-- LineageOS overrides -->
     <project name="PolarMod/android_packages_apps_Settings" path="packages/apps/Settings" remote="github"
@@ -27,13 +27,14 @@
              revision="thunderpluck"/>
     <project name="PolarMod/droidbuild_bootloader_lock-support" path="droidbuild/bootloader/lock-support"
              remote="github" revision="thunderpluck"/>
-    <project name="PolarMod/android_lineage-sdk" path="lineage-sdk" remote="github" revision="thunderpluck" />
+    <project name="PolarMod/android_lineage-sdk" path="lineage-sdk" remote="github" revision="thunderpluck"/>
     <project name="PolarMod/android_bionic" path="bionic" remote="github" revision="thunderpluck"/>
     <project name="PolarMod/android_packages_modules_Permission" remote="github" path="packages/modules/Permission"
              revision="thunderpluck"/>
     <project name="PolarMod/android_packages_apps_SetupWizard" remote="github" path="packages/apps/SetupWizard"
              revision="thunderpluck"/>
-    <project name="PolarMod/android_packages_apps_LineageParts" remote="github" path="packages/apps/LineageParts"/>
+    <project name="PolarMod/android_packages_apps_LineageParts" remote="github" path="packages/apps/LineageParts"
+             revision="thunderpluck"/>
     <!-- LineageOS build system override -->
     <project path="build/soong" name="PolarMod/android_build_soong" groups="pdk,tradefed" revision="thunderpluck">
         <linkfile src="root.bp" dest="Android.bp"/>
