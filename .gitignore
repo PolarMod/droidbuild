@@ -5,3 +5,4 @@ cerbundle.zip.sc
 manifests/private/*
 .idea
 *.iml
+config-*.sh
