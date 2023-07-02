@@ -14,6 +14,7 @@
     <remove-project name="LineageOS/android_packages_apps_SetupWizard"/>
     <remove-project name="LineageOS/android_lineage-sdk"/>
     <remove-project name="LineageOS/android_packages_apps_LineageParts"/>
+    <remove-project name="platform/packages/modules/NetworkStack"/>
     <!-- PolarMod projects -->
     <!-- LineageOS overrides -->
     <project name="PolarMod/android_packages_apps_Settings" path="packages/apps/Settings" remote="github"
@@ -48,6 +49,9 @@
         <linkfile src="target" dest="build/target"/>
         <linkfile src="tools" dest="build/tools"/>
     </project>
+    <!-- Overriden AOSP projects -->
+    <project name="PolarMod/android_packages_modules_NetworkStack" path="packages/modules/NetworkStack"
+             remote="github"/>
     <!-- Addons -->
     <project name="PolarMod/android_packages_services_OmniJaws" path="packages/services/OmniJaws" remote="github"
              revision="thunderpluck"/>
