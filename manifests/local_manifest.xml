@@ -51,7 +51,7 @@
     </project>
     <!-- Overriden AOSP projects -->
     <project name="PolarMod/android_packages_modules_NetworkStack" path="packages/modules/NetworkStack"
-             remote="github"/>
+             remote="github" revision="thunderpluck"/>
     <!-- Addons -->
     <project name="PolarMod/android_packages_services_OmniJaws" path="packages/services/OmniJaws" remote="github"
              revision="thunderpluck"/>
