@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <manifest>
-  <project name="PolarMod/droidbuild_device_twolip" path="droidbuild/device/twolip" remote="github" revision="thunderpluck" />
+    <project name="PolarMod/droidbuild_device_twolip" path="droidbuild/device/twolip" remote="github"
+             revision="thunderpluck"/>
+    <project name="PolarMod/droidbuild_device_hotdogb" path="droidbuild/device/hotdogb" remote="github"
+             revision="thunderpluck"/>
 </manifest>
