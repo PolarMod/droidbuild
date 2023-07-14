@@ -26,8 +26,6 @@
     <project name="PolarMod/android_external_hosts" path="external/hosts" remote="github" revision="thunderpluck"/>
     <project name="PolarMod/android_packages_apps_PolarSettings" path="packages/apps/PolarSettings" remote="github"
              revision="thunderpluck"/>
-    <project name="PolarMod/droidbuild_bootloader_lock-support" path="droidbuild/bootloader/lock-support"
-             remote="github" revision="thunderpluck"/>
     <project name="PolarMod/android_lineage-sdk" path="lineage-sdk" remote="github" revision="thunderpluck"/>
     <project name="PolarMod/android_bionic" path="bionic" remote="github" revision="thunderpluck"/>
     <project name="PolarMod/android_packages_modules_Permission" remote="github" path="packages/modules/Permission"
