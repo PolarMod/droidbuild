@@ -63,7 +63,7 @@
     <project name="PolarMod/android_external_GmsCompatConfig" path="external/GmsCompatConfig" remote="github"
              revision="thunderpluck"/>
     <project name="PolarMod/android_libcore" path="libcore" remote="github" revision="thunderpluck"/>
-    <project name="PolarMod/android_external_hardened_malloc" remote="github" revision="thunderpluck"/>
+    <project name="PolarMod/android_external_hardened_malloc" path="external/hardened_malloc" remote="github" revision="thunderpluck"/>
     <project name="PolarMod/android_packages_apps_GameSpace" remote="github" path="packages/apps/GameSpace"
              revision="thunderpluck"/>
 </manifest>
