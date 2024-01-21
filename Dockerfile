@@ -27,7 +27,7 @@ COPY manifests/* .repo/local_manifests/
 
 # Download Google's repo tool and set-up python
 WORKDIR /root
-RUN ln -sf /usr/bin/python2 /usr/bin/python
+RUN ln -sf /usr/bin/python3 /usr/bin/python
 RUN curl https://commondatastorage.googleapis.com/git-repo-downloads/repo > bin/repo
 RUN chmod a+x bin/repo
 RUN echo "PATH=~/bin:$PATH" >> .bashrc
