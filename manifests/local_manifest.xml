@@ -15,6 +15,7 @@
     <remove-project name="LineageOS/android_lineage-sdk"/>
     <remove-project name="LineageOS/android_packages_apps_LineageParts"/>
     <remove-project name="LineageOS/android_packages_apps_Updater" />
+    <remove-project name="LineageOS/android_system_sepolicy" />
     <remove-project name="platform/packages/modules/NetworkStack"/>
     <!-- PolarMod projects -->
     <project name="PolarMod/android_external_Valor" path="external/valor" remote="github" revision="thunderpluck"/>
@@ -40,6 +41,7 @@
 	    revision="thunderpluck"/>
     <project name="PolarMod/android_packages_apps_Updater" remote="github" path="packages/apps/Updater"
 	    revision="thunderpluck" />
+    <project name="PolarMod/android_system_sepolicy" remote="github" path="system/sepolicy" revision="thunderpluck"/>
     <!-- LineageOS build system override -->
     <project path="build/soong" name="PolarMod/android_build_soong" groups="pdk,tradefed" revision="thunderpluck">
         <linkfile src="root.bp" dest="Android.bp"/>
