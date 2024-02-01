@@ -17,6 +17,7 @@
     <remove-project name="LineageOS/android_packages_apps_Updater" />
     <remove-project name="platform/packages/modules/NetworkStack"/>
     <!-- PolarMod projects -->
+    <project name="PolarMod/android_external_Valor" path="external/valor" remote="github" revision="thunderpluck"/>
     <!-- LineageOS overrides -->
     <project name="PolarMod/android_packages_apps_Settings" path="packages/apps/Settings" remote="github"
              revision="thunderpluck"/>
